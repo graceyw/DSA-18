@@ -10,19 +10,19 @@ public class MyArrayList {
     private Cow[] elems;
     private int size;
 
-    // TODO: Runtime: O(?)
+    // Runtime: O(1)
     public MyArrayList() {
         this(10);
         size = 0;
     }
 
-    // TODO: Runtime: O(?)
+    // Runtime: O(1)
     public MyArrayList(int capacity) {
         elems = new Cow[capacity];
         size = 0;
     }
 
-    // TODO: Runtime: O(?)
+    // Runtime: O(1) (on average, because it's not always going to have to resize which is O(N))
     public void add(Cow c) {
         elems[size] = c; //add new cow "c" at index "size" (last index). Don't have to specify type again (Cow c)
         size++;   //make the size one index bigger so the arraylist isn't full
@@ -34,12 +34,12 @@ public class MyArrayList {
         }
     }
 
-    // TODO: Runtime: O(?)
+    // Runtime: O(1)
     public int size() {
         return size;  //works because size is initialized at the top
     }
 
-    // TODO: Runtime: O(?)
+    // Runtime: O(1)
     public Cow get(int index) {
         if (size < index) {
             throw new IndexOutOfBoundsException();
@@ -47,7 +47,7 @@ public class MyArrayList {
         return elems[index];
     }
 
-    // TODO: Runtime: O(?)
+    // Runtime: O(N)
     public Cow remove(int index) {
         if (size <= index) {
             throw new IndexOutOfBoundsException();
@@ -64,14 +64,13 @@ public class MyArrayList {
         return judy; //return the saved Cow named judy
     }
 
-    // TODO: Runtime: O(?)
+    // Runtime: O(N)
     public void add(int index, Cow c) {
         if (size < index){
             throw new IndexOutOfBoundsException();
         }
         System.arraycopy(elems,index,elems,index+1,size-index); //(source_arr,sourcePos,dest_arr,destPos,length of stuff to copy)
         elems[index] = c;
-
 
         if (size == elems.length){
             Cow[] tempElems = new Cow[size*2];
