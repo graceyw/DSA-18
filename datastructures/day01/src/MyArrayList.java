@@ -3,7 +3,7 @@ Data Structures and Algorithms
 Spring 2018
 Gracey Wilson
 
-ArrayLists Practice
+Day 01 ArrayLists
 */
 
 public class MyArrayList {
