@@ -20,7 +20,7 @@
 
 ## Code
 
-In this homework assignment, you will be implementing your own linked list, doubly-linked list, and pseudo priority queue. You will also augment the stack to support the `maxElement` operation. With each problem, we will add functionality to our classes to more closely match the real functionality of said data structures.
+In this homework assignment, you will be implementing your own doubly-linked list and pseudo priority queue. You will also augment the stack to support the `maxElement` operation. With each problem, we will add functionality to our classes to more closely match the real functionality of said data structures.
 
 ### Provided for you
 
@@ -92,5 +92,27 @@ Take the time to think through why each of these are they way they are.
 
 ### Augmentation
 
-* Modify `MyStack` so that it supports: `public Integer maxElement()`. All operations (including `maxElement`) should still be constant time.
-* Write a new class `MyPriorityQueue`, which supports `enqueue` and `dequeueMax`. This queue dequeues the largest element on the queue, rather than the element at the front of the queue. In this case, you will only be able to do one of the operations in O(1) time. The other operation will be O(N).
+* Modify `MyStack` so that it supports: `public Integer maxElement()`. This function returns the largest element currently on the stack. All operations (including `maxElement`) should still be constant `O(1)` time per operation. For example:
+
+```java
+MyStack s = new MyStack();
+s.push(4);
+s.push(1);
+s.push(5);
+System.out.println(s.maxElement()); // this should print 5
+s.pop(); // this pops the 5 off the stack
+System.out.println(s.maxElement()); // this should print 4, since it is the largest remaining element on the stack
+```
+
+* Write a new class `MyPriorityQueue`, which supports `enqueue` and `dequeueMax`. This queue's `dequeueMax` function dequeues the largest element on the queue, rather than the element at the front of the queue. In this case, you will only be able to do one of the operations in O(1) time. The other operation will be O(N). For example:
+
+```java
+MyPriorityQueue q = new MyPriorityQueue();
+q.enqueue(6);
+q.enqueue(2);
+q.enqueue(4);
+System.out.println(q.dequeueMax()); // this should print 6, and remove the 6 from the queue
+System.out.println(q.dequeueMax()); // this should print 4, and remove the 4 from the queue
+q.enqueue(3); // 3 is now the largest element on the queue
+System.out.println(q.dequeueMax()); // this should print 3, and remove the 3 from the queue
+```

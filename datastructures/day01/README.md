@@ -86,3 +86,10 @@ If you're itching to write more code, try implementing one (or more) of the foll
 - Given an array of unique integers and an integer `n`, return the number of pairs of integers in that array who sum to the input `n`. Do not reuse elements. For example,`numPairs([1,7,3,4,5,2],8)` returns `2`: `[1,7]` and `[3,5]`. Note that it does not return `3`, because `[4, 4]` does not count.
 
 - Find the longest sorted substring of an input array. Return an array of size 2: the starting and ending indices of said substring.
+
+## Submitting the assignment
+
+To get credit when you're done:
+
+- Go to NINJA hours to get checked off
+- Submit [this](https://tinyurl.com/OlinDSA1) survey
