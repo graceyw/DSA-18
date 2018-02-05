@@ -9,6 +9,7 @@ import java.util.LinkedList;
 public class MyStack implements StackADT<Integer> {
 
     private LinkedList<Integer> ll;
+    private LinkedList<Integer> copiedList;
 
     public MyStack() {
         ll = new LinkedList<>();
@@ -36,7 +37,12 @@ public class MyStack implements StackADT<Integer> {
     }
 
     public Integer maxElement() {
-        // TODO
-        return 0;
+        int max = Integer.MIN_VALUE;    // super small value
+        for (int thing : ll){           // for thing in linkedlist, therefore stack
+            if (thing > max){
+                max = thing;
+            }
+        }
+        return max;
     }
 }
