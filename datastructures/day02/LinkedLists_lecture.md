@@ -1,7 +1,7 @@
 # Class Notes: Linked Lists, Stacks, and Queues
-### Tuesday 1.30.18
+## Tuesday 1.30.18
 
-####Linked Lists
+#### Linked Lists
 
 Unlike with arraylists, no need to resize!
 
@@ -34,7 +34,7 @@ public class LinkedList(){
   }
 }
 
-####Stacks
+#### Stacks
 LIFO: Last in first out (can only add and remove off the top of the stack,
 like a stack of books)
 
@@ -42,7 +42,7 @@ push(); // add an element to stack
 pop(); // removing top element from stack
 peek(); // looking at/getting top element of stack
 
-####Queue
+#### Queues
 FIFO: First in first out (can only add from the bottom and delete from top,
 like waiting in a line for a roller coaster)
 
