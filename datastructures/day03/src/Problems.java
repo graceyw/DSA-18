@@ -72,8 +72,28 @@ public class Problems {
     }
 
     public static String infixToPostfix(String s) {
-        // TODO
-        return null;
+        // save each operator, then every time there is a closed parenthesis, put the operator in
+        Stack<Character> symbols = new Stack<Character>();
+        char[] infix = s.toCharArray();
+        String postfix = "";
+        for (int i = 0; i < infix.length; i++){
+            if (infix[i] == '(' || infix[i] == '+' || infix[i] == '-' || infix[i] == '*' || infix[i] == '/'){
+                symbols.push(infix[i]);
+            }
+            else if (infix[i] == ')'){
+                char operator = infix[i];
+                operator = symbols.pop();
+                postfix += operator;
+                if (i<infix.length-1){
+                    postfix += ' ';
+                }
+                symbols.pop();
+            }
+            else if (infix[i] != ' '){
+                postfix += infix[i];
+                postfix += ' ';
+            }
+        }
+        return postfix;
     }
-
 }
