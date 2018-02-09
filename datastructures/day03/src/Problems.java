@@ -20,7 +20,7 @@ public class Problems {
 
         Stack<Integer> s = new Stack();
         for (int i: A) {                //for each thing in A
-            while (s.size() != 0 && i < s.peek() && k > 0){
+            while (s.size() != 0 && i < s.peek() && k > 0){    //key to efficiency of algorithm
                 s.pop();
                 k--;
             }

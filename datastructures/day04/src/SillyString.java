@@ -19,10 +19,13 @@ public class SillyString {
 
     @Override
     public int hashCode() {
-        // TODO What is bad about this hash function??
+        // This is a bad hash function because it hashes different inputs
+        // to the same hashcodes (collisions will happen commonly).
+        // 'bad' == 'dab' or anything else that adds up to the values of b+a+d
+
         int total = 0;
         for (int i=0; i<innerString.length(); i++) {
-            total += innerString.charAt(i);
+            total += innerString.charAt(i);        //in java, integers and chars are same deal
         }
         return total;
     }
