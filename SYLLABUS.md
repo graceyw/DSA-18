@@ -33,7 +33,9 @@ Office hours are located in the first floor lounge of East Hall during the follo
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **8-10PM** Jingyi & Jason
 
 #### Thursday <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **8-10PM** Nick, Willem, Kevin & Erica
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **8-9PM** Willem, Kevin & Erica <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **9-10PM** Nick, Willem, Kevin & Erica <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **10-11PM** Nick
 
 #### Sunday <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **8-10PM** Ben, Serena
@@ -67,7 +69,7 @@ Your homeworks for this class will be coding assignments. You will receive credi
 
 ### Late policy
 
-You will have a “bank” of 7 late days. They can be used all for one assignment (get checked off seven days on one assignment) or split them up across multiple assignments. If you turn in an assignment late and you still have late days left, you can still receive full credit.
+You will have a “bank” of 7 late days. They can be used all for one assignment (get checked off seven days on one assignment) or split them up across multiple assignments. If you turn in an assignment late and you still have late days left, you can still receive full credit. **Late days will only be subtracted on days there are NINJA hours.** This means that if an assignment is due on Thursday night and you get checked off on Sunday, you lose one late day. If you get checked off on Monday, you would lose two late days (one day for Sunday, one day for Monday).
 
 If you are out of late days, your homework will lose 50% of the total value of the assignment. We will accept late work up to week after the assignment was originally due. If you are having trouble with an assignment or have extenuating circumstances and will be unable to complete the assignment, please let the teaching team know (either in person or via email).
 
