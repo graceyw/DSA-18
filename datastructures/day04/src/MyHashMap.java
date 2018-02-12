@@ -13,7 +13,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
     private static final int MIN_BUCKETS = 16;
 
     // array of buckets
-    protected LinkedList<Entry>[] buckets;    //in real coding buckets are all under-the-hood
+    protected LinkedList<Entry>[] buckets;    // in real coding buckets are all under-the-hood
     private int size = 0;
 
     public MyHashMap() {
@@ -70,6 +70,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
      */
     @Override
     public boolean containsKey(Object key) {
+        // O(1) time. "They're literally all O(1) which is why hashmaps are magical." - David
         LinkedList<Entry> bucket = chooseBucket(key);
         for (int i=0; i < bucket.size(); i++){
             if (bucket.get(i).key.equals(key)){
@@ -99,7 +100,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
     public V get(Object key) {
         V val = null;
         LinkedList<Entry> bucket = chooseBucket(key);
-        for (int i=0; i < bucket.size(); i++){
+        for (int i=0; i < bucket.size(); i++){        //size of bucket is numEntries/numBuckets so it's constant, so this is O(1) time
             if (bucket.get(i).key.equals(key)){
                 val = bucket.get(i).value;
             }
@@ -119,7 +120,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
         if (containsKey(key)){
             prev = remove(key);
         }
-        LinkedList<Entry> bucket = chooseBucket(key);
+        LinkedList<Entry> bucket = chooseBucket(key);          // O(1)
         Entry entry = new Entry(key,value);
         bucket.add(entry);
         size++;
@@ -167,6 +168,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
      * the number of buckets is divided by 4.
      */
     private void rehash(double growthFactor) {
+        //This one is O(N) time because you're looking at each individual key in each bucket.
         size = 0;
         LinkedList<Entry>[] exBuckets = this.buckets;
         double numBuckets = this.buckets.length * growthFactor;

@@ -26,11 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyHashMap.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MyHashMap.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MyHashMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1800">
-              <caret line="113" column="13" lean-forward="true" selection-start-line="113" selection-start-column="13" selection-end-line="113" selection-end-column="13" />
+            <state relative-caret-position="1206">
+              <caret line="170" column="93" lean-forward="false" selection-start-line="170" selection-start-column="93" selection-end-line="170" selection-end-column="93" />
               <folding />
             </state>
           </provider>
@@ -46,7 +46,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SillyString.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SillyString.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SillyString.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="342">
@@ -73,16 +73,16 @@
       <list>
         <option value="$PROJECT_DIR$/test/MyHashMapTest.java" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/MyHashMap.java" />
         <option value="$PROJECT_DIR$/src/SillyString.java" />
+        <option value="$PROJECT_DIR$/src/MyHashMap.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="956" />
-    <option name="y" value="24" />
+    <option name="y" value="-4" />
     <option name="width" value="964" />
-    <option name="height" value="1056" />
+    <option name="height" value="1084" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -144,7 +144,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.SillyString">
+  <component name="RunManager" selected="JUnit.All in day04">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -287,9 +287,9 @@
     </list>
     <recent_temporary>
       <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Application.SillyString" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.MyHashMapTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.All in day04" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.All in day04" />
+        <item index="1" class="java.lang.String" itemvalue="Application.SillyString" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.MyHashMapTest" />
       </list>
     </recent_temporary>
   </component>
@@ -316,6 +316,12 @@
     <history-entry file="All_in_day04 - 2018.02.06 at 15h 59m 08s.xml">
       <configuration name="All in day04" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="All_in_day04 - 2018.02.08 at 22h 44m 38s.xml">
+      <configuration name="All in day04" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_day04 - 2018.02.08 at 22h 45m 42s.xml">
+      <configuration name="All in day04" configurationId="JUnit" />
+    </history-entry>
     <history-entry file="MyHashMapTest - 2018.02.06 at 18h 15m 31s.xml">
       <configuration name="MyHashMapTest" configurationId="JUnit" />
     </history-entry>
@@ -330,8 +336,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="956" y="24" width="964" height="1056" extended-state="0" />
-    <editor active="true" />
+    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -339,14 +344,14 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3106796" sideWeight="0.17323652" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14450262" sideWeight="0.1703504" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3106796" sideWeight="0.8267635" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14450262" sideWeight="0.82964957" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15560167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08086254" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Learn" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -536,18 +541,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MyHashMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1800">
-          <caret line="113" column="13" lean-forward="true" selection-start-line="113" selection-start-column="13" selection-end-line="113" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SillyString.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="32" column="7" lean-forward="true" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MyHashMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1206">
+          <caret line="170" column="93" lean-forward="false" selection-start-line="170" selection-start-column="93" selection-end-line="170" selection-end-column="93" />
           <folding />
         </state>
       </provider>
