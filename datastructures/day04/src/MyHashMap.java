@@ -2,9 +2,9 @@ import java.util.*;
 
 public class MyHashMap<K, V> implements Map<K, V> {
 
-    // average number of entries per map before we grow the map
+    // average number of entries per bucket before we grow the map
     private static final double ALPHA = 1.0;
-    // average number of entries per map before we shrink the map
+    // average number of entries per bucket before we shrink the map
     private static final double BETA = .25;
 
     // resizing factor: (new size) = (old size) * (resize factor)
