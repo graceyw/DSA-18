@@ -4,8 +4,8 @@ public class InsertionSort extends SortAlgorithm {
      * Use the insertion sort algorithm to sort the array
      *
      * Best-case runtime: O(N) if it's small or already mostly sorted
-     * Worst-case runtime: O(N^2)
-     * Average-case runtime: O(N)
+     * Worst-case runtime: O(N^2) ("very much N^2" - Nick)
+     * Average-case runtime: O(N^2)
      *
      * Space-complexity: O(1) because no copies of the array are made
      */
