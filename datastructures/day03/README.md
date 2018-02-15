@@ -6,6 +6,10 @@
 - Analyze runtime and space complexity of algorithms
 - Begin developing an approach to solving algorithm problems
 
+## Resources
+
+- Problem solving guide:  [NFFSSSSSS](https://drive.google.com/open?id=1K1AIHLVg6HOh6qhXTkvFwOiAebhcPfkcT6aJuBmdSQQ)
+
 # Problems
 
 ## Remove K Digits

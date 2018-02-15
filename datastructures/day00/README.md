@@ -4,6 +4,8 @@
 
 Help us get to know you and provide input to the class by filling out [this](https://goo.gl/forms/iIcRZXaDP6nuO7fD2) Google form.
 
+For info on the class that is not represented on the syllabus, refer to our intro slides [here](https://drive.google.com/open?id=14W94RU1IpB8Sfvl7VP9Px4VlwRQ7Nl0Vg7PxyvgXs-Y).
+
 ## Getting Set
 
 ### Git

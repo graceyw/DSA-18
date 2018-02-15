@@ -16,9 +16,11 @@ Students will be able to:
 
 Midnight, Feb. 8, 2018
 
+
 ## Assignment
 
-### Outside resources
+### Resources
+- [Here](https://drive.google.com/open?id=194aE2RZ4tUBX4s9Ek1ot6HXRmfbfc2P4) are our slides for hashmaps.
 
 - Today in lecture we spoke about the requirements of hash functions, but didn't actually cover how to write one. If you're curious, [this](https://youtu.be/VeHDbC02ENA?t=48s) video has got you covered.
 - The Princeton Algorithms class has a great [video lecture](https://youtu.be/0Yor2eyR2U4) about how to use multiple buckets proportional to the number of key-value pairs in the Hashmap, a concept they call Separate Chaining. Their implementation is not identical to ours, but it should give you an idea about how you can write your functions.

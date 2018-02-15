@@ -6,6 +6,14 @@
 - Understand the need and implementation of dynamically sized arrays
 - Be able to analyze time complexities of actions preformed on arrays
 
+## Resources
+
+- Think Data Structures is available [here](http://greenteapress.com/thinkdast/thinkdast.pdf), or on the Google Drive.
+- If you're having trouble understanding the implementations or runtimes of your `MyArrayList` methods, read **3.1, 3.2, 3.3**. (Think Data Structures' `ArrayList` stores data of type `E`. In our implementation, our `ArrayList` stores data of type `Cow`. For the most part, in the functions you can simply replace `E` with `Cow`).
+- [This](https://www.unf.edu/~wkloster/3540/wiki_book2.pdf#page=20) PDF has a great 2-page explanation of amortized analysis.
+- Our slides on arraylists are [here](https://drive.google.com/open?id=1x8qdI2GksyVpM0_fHHGxJQPM5nlPsmSeHLth2OoBSwM)
+
+
 ## `MyArrayList`
 
 In this homework assignment, you are going to write your own implementation of an ArrayList.
@@ -34,12 +42,6 @@ The tests you will be running on your `MyArrayList` class will be using this `Co
 
 # Assignment
 
-## Reading (Optional)
-
-Think Data Structures is available [here](http://greenteapress.com/thinkdast/thinkdast.pdf), or on the Google Drive.
-
-- If you're having trouble understanding the implementations or runtimes of your `MyArrayList` methods, read **3.1, 3.2, 3.3**. (Think Data Structures' `ArrayList` stores data of type `E`. In our implementation, our `ArrayList` stores data of type `Cow`. For the most part, in the functions you can simply replace `E` with `Cow`).
-- [this](https://www.unf.edu/~wkloster/3540/wiki_book2.pdf#page=20) PDF has a great 2-page explanation of amortized analysis.
 
 ## Code
 

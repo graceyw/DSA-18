@@ -1,20 +1,24 @@
 # Day02 - `Linked Lists, Stacks, and Queues`
 
-## Learning Goals
+# Learning Goals
 
 - Understand memory allocation of linked lists
 - Understand the need and implementation of pointer based data structures
 - Be able to analyze time complexities of linked lists
-
 - Understand when to use LinkedList versus ArrayList
 - Understand the difference between a stack and a queue
 - Identify problems where stacks or queues can contribute to an effective solution.
 - Implement a stack and a queue that uses `O(n)` space and has `O(1)` per-operation time complexity.
 
-# Optional Resources
+# Resources
 
 - In [Think DAST](http://greenteapress.com/thinkdast/thinkdast.pdf), read sections **4.1, 4.2, 5.4, and 5.5** which cover Linked Lists. Read section **6.6** which covers Stacks and Queues. Ignore the parts about "DFS", we'll learn about that later.
-- The class [Google Drive](https://drive.google.com/drive/folders/1W8hPg5bVsUO5I9juJZdmYM5xYRnsIxIT?usp=sharing) has a ton of awesome resources from todays class. Included are two sets of lecture notes we wrote that you can refer to, powerpoint slides, and todays pset. Highly recommended you look through [this folder](https://drive.google.com/drive/folders/1MgFwOFICcBvi8hxBOAXQKWQZZ7OOgfa0?usp=sharing) if you are struggling with the assignment.
+
+- Our lecture notes on Linked Lists and Stacks/Queues are [here](https://drive.google.com/open?id=19wmaQ2eLntO9mXKmJzc_b7luxj_7d603v0GXnZc_P18).
+
+- Our slides on [LLs](https://docs.google.com/presentation/d/1_5Uz06Yw2P-CdXoP-j_D_RIVlP_y89wv7xjHdx4vzZ8/edit?usp=sharing) and [S+Q](https://docs.google.com/presentation/d/1EBnTBGXLrpecftsyOScBp8OPW4bcv5hdMZol789w33o/edit?usp=sharing)s.
+
+- Notes from UC Berkeley on [Linked Lists](https://drive.google.com/open?id=1czCHlwIhvMl-KkZon1hTiA6relpjfxkr) and [Stacks/Queues](https://drive.google.com/open?id=1NbfPaMdlokDTGlGVL20vynXECxfe0OfJ)
 
 # Assignment
 
@@ -44,7 +48,7 @@ The tests you will be running on your `MyLinkedList` class will be using this `C
 1. Implement an empty constructor. Initialize `head`, `tail`, and `size`.
 
     `public MyLinkedList()`
-    
+
 2. Implement a method called `addLast` that will add a `Chicken` to the end of your `MyLinkedList`. Remember to consider the special case where `size` is 0.
 
     `public void addLast(Chicken c)`
@@ -56,13 +60,13 @@ The tests you will be running on your `MyLinkedList` class will be using this `C
 4. Can we inspect a chicken in our `MyLinkedList`? Implement a method called `get` that will return a `Chicken` given the index of the `Chicken`. Make sure to check that `index` is valid.
 
     `public Chicken get(int index)`
-    
+
 5. Some chickens might leave the farm for various reasons. LinkedLists have special case O(1) deletes off the front and back. Implement `removeFirst` and `removeLast`, and make sure to return them so Ben can "deal" with them. Remember to consider the special cases where `size` is 0 or 1.
 
     `public Chicken removeFirst()`
 
     `public Chicken removeLast()`
-    
+
 6. Chickens might leave in any order. If a chicken in the middle leaves, we want to update our `LinkedList` pointers so that the `Node` before the removed chicken points to the `Node` after the removed `Chicken`. Return the removed `Chicken` so we can "deal" with it. Remember to consider the special cases where `index=0` or `index=size-1`.
 
     `public Chicken remove(int index)`
