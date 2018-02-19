@@ -5,14 +5,6 @@ import java.util.PriorityQueue;
 
 public class Problems {
 
-    private static PriorityQueue<Integer> minPQ() {
-        return new PriorityQueue<>(11);
-    }
-
-    private static PriorityQueue<Integer> maxPQ() {
-        return new PriorityQueue<>(11, Collections.reverseOrder());
-    }
-
     private static double getMedian(List<Integer> A) {
         double median = (double) A.get(A.size() / 2);
         if (A.size() % 2 == 0)
@@ -42,8 +34,31 @@ public class Problems {
      */
     public static double[] runningMedian(int[] inputStream) {
         double[] runningMedian = new double[inputStream.length];
-        // TODO
+        PriorityQueue<Integer> aboveMedian = new PriorityQueue<>(11);
+        PriorityQueue<Integer> belowMedian = new PriorityQueue<>(11, Collections.reverseOrder());   //by default in java PQs are min, so we say reverse to make it a max PQ
+
+        if (inputStream.length == 0) {
+            return runningMedian;
+        }
+
+        for (int med=0; med<inputStream.length; med++) {
+            belowMedian.offer(inputStream[med]);
+
+            if (belowMedian.size() > aboveMedian.size()+1) {
+                aboveMedian.offer(belowMedian.poll());
+            }
+            if (! aboveMedian.isEmpty() && belowMedian.peek() > aboveMedian.peek()) {
+                aboveMedian.offer(belowMedian.poll());
+                belowMedian.offer(aboveMedian.poll());
+            }
+
+            if ((aboveMedian.size() + belowMedian.size()) % 2 == 0) {
+                runningMedian[med] = (double)(aboveMedian.peek() + belowMedian.peek())/2;
+            }
+            else {
+                runningMedian[med] = belowMedian.peek();
+            }
+        }
         return runningMedian;
     }
-
 }

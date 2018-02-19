@@ -11,12 +11,11 @@ public class QuickSort extends SortAlgorithm {
     }
 
     /**
-     * TODO
-     * Best-case runtime:
-     * Worst-case runtime:
-     * Average-case runtime:
+     * Best-case runtime: O()
+     * Worst-case runtime: O(N^2)
+     * Average-case runtime: O(N)
      *
-     * Space-complexity:
+     * Space-complexity: logN
      */
     @Override
     public int[] sort(int[] array) {
@@ -62,7 +61,7 @@ public class QuickSort extends SortAlgorithm {
             }
             else if (array[lo+1] >= array[lo]) {
                 int temp = array[hi];
-                array[hi] = array[lo+1];     //send it to the back
+                array[hi] = array[lo+1];             //send it to the back
                 array[lo+1] = temp;
                 hi--;
             }
