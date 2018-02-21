@@ -29,7 +29,7 @@ For example, given arr[] =  {1, 0, 1, 1, 1, 0, 0}, the output is [1,6] meaning i
 
 ### Frequncy Count
 
-`FrequencyCount()` takes in a String and returns the distinct values found and the number of times each was found, in decreasing order of the frequencies. **Make sure your algorithm is faster than O(N^2).** Bonus points (not really...though it would be pretty cool) if your algorithm runs faster than O(NlogN).
+`FrequencyCount()` takes in a String and returns the distinct values found and the number of times each was found, in ascending order of the frequencies. **Make sure your algorithm is faster than O(N^2).** Bonus points (not really...though it would be pretty cool) if your algorithm runs faster than O(NlogN).
 
 For example, if the input is {to be or not to be to}, the output is either {or not be be to to to} or {not or be be to to to}.
 
