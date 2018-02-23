@@ -1,6 +1,7 @@
-import java.sql.Array;
-import java.sql.SQLOutput;
 import java.util.*;
+
+// Runtime: O(N) because you iterate over N twice but that means 2N, so really N
+// Space Complexity: O(N) because same deal
 
 public class FrequencyPrint {
 
@@ -44,7 +45,6 @@ public class FrequencyPrint {
                 }
             }
         }
-        System.out.println(listofStrings);
         return String.join(" ",listofStrings);
     }
 }
