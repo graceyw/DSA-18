@@ -3,7 +3,7 @@ import java.util.LinkedList;
 public class CountingSort {
 
     /**
-     * Use counting sort to sort positive integer array A.
+     * Use counting sort to sort non-negative integer array A.
      * Runtime: O(k+n)
      */
     static void countingSort(int[] A) {
