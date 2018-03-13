@@ -20,7 +20,6 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 
 
     public boolean add(T key) {
-        System.out.println("adding " + key);
         super.add(key);
         root.color = BLACK;
         return true;
@@ -33,6 +32,8 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T> {
         h.leftChild = j.rightChild;
         j.rightChild = h;
         h = j;
+        h.color = h.rightChild.color;
+        h.rightChild.color = RED;
         return h;
     }
 
@@ -42,6 +43,8 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T> {
         h.rightChild = j.leftChild;
         j.leftChild = h;
         h = j;
+        h.color = h.leftChild.color;
+        h.leftChild.color = RED;
         return h;
     }
 
@@ -83,8 +86,6 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T> {
     @Override
     TreeNode<T> insert(TreeNode<T> h, T key) {
         h = super.insert(h, key);                  //handles if h==null case and compareTo functions in insert method in BinarySearchTree.java ("super" goes to the overarching class)
-        System.out.println(h.key);
-        System.out.println("printing");
         return balance(h);
     }
 
