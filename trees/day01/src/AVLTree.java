@@ -65,23 +65,28 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
      * most one.
      */
     private int balanceFactor(TreeNode<T> n) {
-        // TODO
-        return 0;
+        return n.rightChild.height - n.leftChild.height;
     }
 
     /**
      * Perform a right rotation on node `n`. Return the head of the rotated tree.
      */
     private TreeNode<T> rotateRight(TreeNode<T> n) {
-        // TODO
-        return null;
+        TreeNode x = n.leftChild;
+        TreeNode b = x.rightChild;
+        x.rightChild = n;
+        n = b.leftChild;
+        return n;
     }
 
     /**
      * Perform a left rotation on node `n`. Return the head of the rotated tree.
      */
     private TreeNode<T> rotateLeft(TreeNode<T> n) {
-        // TODO
-        return null;
+        TreeNode x = n.rightChild;
+        TreeNode b = x.leftChild;
+        x.leftChild = n;
+        n = b.rightChild;
+        return n;
     }
 }

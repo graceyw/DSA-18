@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class BinarySearchTree<T extends Comparable<T>> {
@@ -27,9 +28,19 @@ public class BinarySearchTree<T extends Comparable<T>> {
             add(k);
     }
 
+    public void traversal(TreeNode<T> root, ArrayList<T> list) {
+        if (root == null) {
+            return;                       //base case: if you run into a leaf, pop out
+        }
+        traversal(root.leftChild,list);
+        list.add(root.key);
+        traversal(root.rightChild,list);
+    }
+
     public List<T> inOrderTraversal() {
-        // TODO
-        return null;
+        ArrayList<T> trav = new ArrayList<T>();         //initialize an empty ArrayList
+        traversal(root,trav);
+        return trav;                                    //is now a post-"traversal" trav
     }
 
     /**
