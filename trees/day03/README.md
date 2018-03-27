@@ -28,7 +28,7 @@ We recommend an AVLTree as a starting point, and have provided our solution in t
 
 <details>
   <summary>Hint 1: Optimal Complexities</summary>
-  rangeCount should run in O(log(N). rangeIndex should run in O(log(N) + L), where L = number of keys between [lo,  hi].
+  rangeCount should run in O(log(N)). rangeIndex should run in O(log(N) + L), where L = number of keys between [lo,  hi].
 </details>
 
 <details>

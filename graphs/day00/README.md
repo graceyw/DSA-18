@@ -2,6 +2,7 @@
 
 ## Resources
 
+* [Lecture slides](https://docs.google.com/presentation/d/1dGAts7iDMSpQAvbanJb4GoQvsraQ3-X4gqNLC02APqs/edit?usp=sharing) from today
 * Princeton lecture on Graph API and data-structure: https://youtu.be/AixTJNS3Z84
 * Princeton lecture on DFS: https://youtu.be/ZmoVxpZomKs
 
