@@ -41,7 +41,7 @@ public class Skyline {
                 prevHt2++;
             }
 
-            // If j exceeds end of s2 or s1's next pt has smaller x, use point from s1
+            // If prevHt2 exceeds end of s2 or s1's next pt has smaller x, use point from s1
             else if (prevHt2 == s2.size() || (prevHt1 < s1.size() && s1.get(prevHt1).x < s2.get(prevHt2).x)) {
                 int newX = s1.get(prevHt1).x;
                 int newY = Math.max(s1.get(prevHt1).y, prevHt2 > 0 ? s2.get(prevHt2-1).y : s1.get(prevHt1).y);
@@ -67,8 +67,8 @@ public class Skyline {
     }
 
     private static List<Point> recurs(Building[] B, int lo, int hi) {
-        if (lo == hi) return new ArrayList<>();
-        if (hi -lo == 1) return Arrays.asList(new Point(B[lo].l, B[lo].h), new Point(B[lo].r, 0));
+        if (lo == hi) return new ArrayList<>();  // no building
+        if (hi-lo == 1) return Arrays.asList(new Point(B[lo].l, B[lo].h), new Point(B[lo].r, 0));  // 1 building
         int mid = (hi+lo)/2;
         List<Point> leftSky = recurs(B, lo, mid);
         List<Point> rightSky = recurs(B, mid, hi);
