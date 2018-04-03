@@ -42,7 +42,7 @@ Write your code in the `NQueens` class. Note that for the tests to pass, you wil
 
 <details>
   <summary>Hint 1</summary>
-  There must be a queen in every row of the chess board. Start at the top row of the board, and try to assign a queen to each row. Pass along which row you are currently assigning as a variable in your recursive function.
+  There must be a queen in every row of the chess board. Start at the top row of the board, and try to assign a queen to each column. Pass along which row you are currently assigning as a variable in your recursive function.
 </details>
 
 <details>

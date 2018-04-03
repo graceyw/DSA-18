@@ -50,9 +50,10 @@ The IDE we recommend for this class is IntelliJ. If you have another preferred
 IDE, that's fine. Here's how to install IntelliJ:
 
 ```
-sudo add-apt-repository ppa:ubuntuhandbook1/apps
-sudo apt-get update
-sudo apt-get install intellij-idea-community
+sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make
+sudo apt update
+sudo apt install ubuntu-make
+umake ide idea
 ```
 
 Set up IntelliJ according to your preferences!
