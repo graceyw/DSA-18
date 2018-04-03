@@ -37,7 +37,6 @@ public class NQueens {
         return false;
     }
 
-
     /**
      * Creates a deep copy of the input array and returns it
      */
@@ -48,10 +47,34 @@ public class NQueens {
         return B;
     }
 
+    public static void recurse(char[][] board, int currRow, boolean[] columns, List<char[][]> answers) {
+        if (currRow == board.length) {
+            answers.add(copyOf(board));
+            return;
+        }
+        for (int col=0; col<board.length; col++) {
+            if (!columns[col] && !checkDiagonal(board, currRow, col)) {      //if there is not a queen in that row and col
+                board[currRow][col] = 'Q';                                  //add queen
+                columns[col] = true;
+                recurse(board, currRow+1, columns, answers);        //recurse
+                board[currRow][col] = '.';                                 //immediately undo
+                columns[col] = false;
+            }
+        }
+    }
 
+    // "An upperbound" for # of solutions: N! because you have (N choices in row 0) * (N-1 choices in row 1) * (N-2 choices in row 2)...etc
+    // Runtime: David says "probably" N^2 * N! ("Depending on how much you believe me...many times have I been wrong")
     public static List<char[][]> nQueensSolutions(int n) {
-        // TODO
+        boolean[] columns = new boolean[n];     //automatically store all falses in the beginning, so we're good
+        char[][] board = new char[n][n];        //auto initializes ints as 0s
+        for (int row=0; row<n; row++) {         //so make them . instead to show no queen
+            for (int col=0; col<n; col++) {
+                board[row][col] = '.';
+            }
+        }
         List<char[][]> answers = new ArrayList<>();
+        recurse(board,0,columns,answers);
         return answers;
     }
 

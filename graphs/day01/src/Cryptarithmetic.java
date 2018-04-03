@@ -26,9 +26,31 @@ public class Cryptarithmetic {
         return i;
     }
 
+    private static boolean recurse(String S1, String S2, String S3, Map<Character, Integer> assignments, List<Character> unassigned) {
+        if (unassigned.isEmpty()) {
+            validSolution(S1, S2, S3, assignments);
+        }
+        for (int i=0; i<=9; i++) {
+            char c = unassigned.remove(0);
+            assignments.put(c,i);
+            if (recurse(S1, S2, S3, assignments, unassigned)) {
+                return true;
+            }
+            assignments.remove(c);
+            unassigned.add(c);
+        }
+        return false;        //if no combinations work
+    }
+
     public static Map<Character, Integer> solvePuzzle(String S1, String S2, String S3) {
-        // TODO
         Map<Character, Integer> assignments = new HashMap<>();
+        List<Character> unassigned = new LinkedList<>();
+        for (char c : (S1 + S2 + S3).toCharArray()) {          //makes an array of all 3 strings together
+            if (!unassigned.contains(c)) {                     //if c hasn't already been added
+                unassigned.add(c);
+            }
+        }
+        recurse(S1, S2, S3, assignments, unassigned);
         return assignments;
     }
 }
