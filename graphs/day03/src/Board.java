@@ -29,10 +29,10 @@ public class Board {
         return tiles.length;
     }
 
-    public int[] getIndices(int num, Board board) {
+    public int[] getIndices(int num, int[][] board) {
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles.length; j++) {
-                if (board.tiles[i][j] == num) {
+                if (board[i][j] == num) {
                     return new int[]{i,j};
                 }
             }
@@ -80,13 +80,7 @@ public class Board {
      * Return all neighboring boards in the state tree
      */
     public Iterable<Board> neighbors() {
-        /*for (int i=0; i<n; i++){
-            for (int j=0; j<n;j++){
-               if (this.tiles[i][j] == 0){
-
-               }
-            }
-        }*/
+        int[] location = getIndices(0, this.tiles);
         return null;
     }
 
