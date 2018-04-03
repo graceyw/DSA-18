@@ -29,10 +29,10 @@ public class Board {
         return tiles.length;
     }
 
-    public int[] getIndices(int num) {
+    public int[] getIndices(int num, Board board) {
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles.length; j++) {
-                if (goal[i][j] == num) {
+                if (board.tiles[i][j] == num) {
                     return new int[]{i,j};
                 }
             }
