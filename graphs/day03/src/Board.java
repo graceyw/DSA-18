@@ -17,7 +17,7 @@ public class Board {
      * Set the global board size and tile state
      */
     public Board(int[][] b) {
-        // TODO: Your code here
+        tiles = b;
     }
 
     /*
@@ -25,15 +25,32 @@ public class Board {
      (equal to 3 for 8 puzzle, 4 for 15 puzzle, 5 for 24 puzzle, etc)
      */
     private int size() {
-        // TODO: Your code here
-        return 0;
+        return tiles.length;
+    }
+
+    public int[] getIndices(int num) {
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles.length; j++) {
+                if (goal[i][j] == num) {
+                    return new int[]{i,j};
+                }
+            }
+        }
+        return null;
     }
 
     /*
      * Sum of the manhattan distances between the tiles and the goal
      */
     public int manhattan() {
-        // TODO: Your code here
+        for (int i=0; i < tiles.length; i++) {
+            for (int j=0; j < tiles.length; j++) {
+                if (tiles[i][j] != goal[i][j]) {
+                    int prob = tiles[i][j];
+
+                }
+            }
+        }
         return 0;
     }
 
