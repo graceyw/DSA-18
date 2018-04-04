@@ -47,7 +47,7 @@ public class Board {
             for (int j=0; j < tiles.length; j++) {
                 if (tiles[i][j] != goal[i][j]) {
                     int prob = tiles[i][j];
-
+                        
                 }
             }
         }
@@ -67,8 +67,8 @@ public class Board {
      * Research how to check this without exploring all states
      */
     public boolean solvable() {
-        // TODO: Your code here
-        return false;
+        if (manhattan() % 2 == 0) return true;  //if manhattan is even, solvable
+        return false;                           //if odd, not solvable
     }
 
     /*
