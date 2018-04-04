@@ -11,13 +11,14 @@ public class Board {
 
     //TODO
     // Create a 2D array representing the solved board state
-    private int[][] goal = {{}};
+    private int[][] goal = {{1,2,3}, {4,5,6}, {7,8,0}};
 
     /*
      * Set the global board size and tile state
      */
     public Board(int[][] b) {
         tiles = b;
+        n = this.tiles.length;
     }
 
     /*
@@ -28,10 +29,10 @@ public class Board {
         return tiles.length;
     }
 
-    public int[] getIndices(int num) {
+    public int[] getIndices(int num, int[][] board) {
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles.length; j++) {
-                if (goal[i][j] == num) {
+                if (board[i][j] == num) {
                     return new int[]{i,j};
                 }
             }
@@ -47,7 +48,7 @@ public class Board {
             for (int j=0; j < tiles.length; j++) {
                 if (tiles[i][j] != goal[i][j]) {
                     int prob = tiles[i][j];
-                        
+                    
                 }
             }
         }
@@ -58,8 +59,8 @@ public class Board {
      * Compare the current state to the goal state
      */
     public boolean isGoal() {
-        // TODO: Your code here
-        return false;
+        Board solvedB = new Board(goal);
+        return equals(solvedB);
     }
 
     /*
@@ -71,11 +72,15 @@ public class Board {
         return false;                           //if odd, not solvable
     }
 
+    public Board swapTiles(int i, int j, int n, int m){
+        return null;
+    }
+
     /*
      * Return all neighboring boards in the state tree
      */
     public Iterable<Board> neighbors() {
-        // TODO: Your code here
+        int[] location = getIndices(0, this.tiles);
         return null;
     }
 
