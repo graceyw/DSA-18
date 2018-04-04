@@ -46,9 +46,14 @@ public class Board {
     public int manhattan() {
         for (int i=0; i < tiles.length; i++) {
             for (int j=0; j < tiles.length; j++) {
+                for () {
+                    for () {
+
+                    }
+                }
                 if (tiles[i][j] != goal[i][j]) {
                     int prob = tiles[i][j];
-                    
+
                 }
             }
         }
