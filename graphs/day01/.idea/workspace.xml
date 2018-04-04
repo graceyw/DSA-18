@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fd818e1b-858a-47dd-bf5f-6edf2b54aba7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../day03/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../day03/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/../day03/src/Board.java" afterPath="$PROJECT_DIR$/../day03/src/Board.java" />
-    </list>
+    <list default="true" id="fd818e1b-858a-47dd-bf5f-6edf2b54aba7" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
