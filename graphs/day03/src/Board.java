@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class Board {
      * Size of the board 
      (equal to 3 for 8 puzzle, 4 for 15 puzzle, 5 for 24 puzzle, etc)
      */
-    private int size() {
+    public int size() {
         return tiles.length;
     }
 
@@ -73,15 +75,48 @@ public class Board {
     }
 
     public Board swapTiles(int i, int j, int n, int m){
-        return null;
+        int[][] tempB = copyOf(this.tiles);
+        int tile1 = tempB[i][j];
+        int tile2 = tempB[n][m];
+        tempB[i][j] = tile2;
+        tempB[n][m] = tile1;
+        return new Board(tempB);
     }
 
     /*
      * Return all neighboring boards in the state tree
      */
     public Iterable<Board> neighbors() {
+        List<Board> lBoard = new ArrayList<>();
         int[] location = getIndices(0, this.tiles);
-        return null;
+        int i = location[0];
+        int j = location[1];
+
+        if (i>0) {
+            lBoard.add(swapTiles(i, j, i - 1, j));
+        }
+        if (i<n-1) {
+            lBoard.add(swapTiles(i, j, i + 1, j));
+        }
+        if (j>0) {
+            lBoard.add(swapTiles(i, j, i, j - 1));
+        }
+        if (j<n-1) {
+            lBoard.add(swapTiles(i, j, i, j + 1));
+        }
+
+        Iterable<Board> iter = lBoard;
+        return iter;
+    }
+
+    /**
+     * Creates a deep copy of the input array and returns it
+     */
+    private static int[][] copyOf(int[][] A) {
+        int[][] B = new int[A.length][A[0].length];
+        for (int i = 0; i < A.length; i++)
+            System.arraycopy(A[i], 0, B[i], 0, A[0].length);
+        return B;
     }
 
     /*
@@ -120,5 +155,12 @@ public class Board {
         System.out.println("Is goal: " + board.isGoal());
         System.out.println("Neighbors:");
         Iterable<Board> it = board.neighbors();
+    }
+
+    public void displayBoard(){
+        for (int i = 0; i<n; i++){
+            System.out.println(Arrays.toString(this.tiles[i]));
+        }
+        System.out.println("");
     }
 }
