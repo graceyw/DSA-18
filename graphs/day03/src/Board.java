@@ -46,18 +46,13 @@ public class Board {
     public int manhattan() {
         for (int i=0; i < tiles.length; i++) {
             for (int j=0; j < tiles.length; j++) {
-                for () {
-                    for () {
-
-                    }
-                }
-                if (tiles[i][j] != goal[i][j]) {
-                    int prob = tiles[i][j];
-
+                if (tiles[i][j] != goal[i][j] && tiles[i][j] !=0) {                         //if the tile and goal aren't the same
+                    int[] goalLocation = getIndices(tiles[i][j], goal);                     //grab the goal location using getIndices
+                    return (Math.abs(i-goalLocation[0])) + Math.abs((j-goalLocation[0]));   //return the distance between the current location and goal location, in both x+y directions
                 }
             }
         }
-        return 0;
+        return 0;                                                                          //if they're referring to the same tile so manhattan distance = 0
     }
 
     /*
@@ -73,8 +68,8 @@ public class Board {
      * Research how to check this without exploring all states
      */
     public boolean solvable() {
-        if (manhattan() % 2 == 0) return true;  //if manhattan is even, solvable
-        return false;                           //if odd, not solvable
+        if (manhattan() % 2 == 0) return true;     //if manhattan is even, solvable
+        return false;                              //if odd, not solvable
     }
 
     public Board swapTiles(int i, int j, int n, int m){
