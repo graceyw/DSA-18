@@ -26,8 +26,18 @@ public class Solver {
             this.board = board;
             this.moves = moves;
             this.prev = prev;
-            // TODO
-            cost = 0;
+            cost = findCost();
+        }
+
+        /*
+         * Finds the cost of a state
+         */
+        public int findCost(){
+            int g = this.moves;
+            int h2 = this.board.manhattan();
+            int h1 = this.board.numMisplaced();
+            int f = g+h1+h2;
+            return f;
         }
 
         @Override
@@ -46,6 +56,8 @@ public class Solver {
         // TODO: Your code here
         return null;
     }
+
+
 
     /*
      * A* Solver
