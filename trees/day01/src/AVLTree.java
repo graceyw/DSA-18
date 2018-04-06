@@ -7,9 +7,8 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
     TreeNode<T> delete(TreeNode<T> n, T key) {
         n = super.delete(n, key);
         if (n != null) {
-            // TODO
-            // update the height of the tree using the height of the left and right child
-            // return balance(n)
+            n.height = 1 + Math.max(height(n.leftChild), height(n.rightChild));       // update the height of the tree using the height of the left and right child
+            return balance(n);
         }
         return null;
     }
@@ -21,9 +20,8 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
     TreeNode<T> insert(TreeNode<T> n, T key) {
         n = super.insert(n, key);
         if (n != null) {
-            // TODO
-            // update the height of the tree using the height of the left and right child
-            // return balance(n)
+            n.height = 1 + Math.max(height(n.leftChild), height(n.rightChild));       // update the height of the tree using the height of the left and right child
+            return balance(n);
         }
         return null;
     }
@@ -43,8 +41,8 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 
     // Return the height of the given node. Return -1 if null.
     private int height(TreeNode<T> n) {
-        // TODO
-        return 0;
+        if (n == null) return -1;
+        return (Math.max(height(n.leftChild), height(n.rightChild))+1);
     }
 
     public int height() {
@@ -53,8 +51,19 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 
     // Restores the AVL tree property of the subtree. Return the head of the new subtree
     TreeNode<T> balance(TreeNode<T> n) {
-        // TODO: (if you're having trouble, use pseudocode provided in slides)
-        return null;
+        if (balanceFactor(n) > 1) {                             //if very right-heavy
+            if (balanceFactor(n.rightChild) < 0) {              //if rightChild is left-heavy
+                n.rightChild = rotateRight(n.rightChild);
+            }
+            n = rotateLeft(n);
+        }
+        else if (balanceFactor(n) < -1) {                       //if very left-heavy
+            if (balanceFactor(n.rightChild) > 0) {              //if leftChild is right-heavy
+                n.leftChild = rotateLeft(n.leftChild);
+            }
+            n = rotateRight(n);
+        }
+        return n;
     }
 
     /**
@@ -65,7 +74,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
      * most one.
      */
     private int balanceFactor(TreeNode<T> n) {
-        return n.rightChild.height - n.leftChild.height;
+        return (height(n.rightChild) - height(n.leftChild));
     }
 
     /**
@@ -73,10 +82,11 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
      */
     private TreeNode<T> rotateRight(TreeNode<T> n) {
         TreeNode x = n.leftChild;
-        TreeNode b = x.rightChild;
+        n.leftChild = x.rightChild;
         x.rightChild = n;
-        n = b.leftChild;
-        return n;
+        n.height = 1 + Math.max(height(n.leftChild), height(n.rightChild));       // update the height of the tree using the height of the left and right child
+        x.height = 1 + Math.max(height(x.leftChild), height(x.rightChild));       // update the height of the tree using the height of the left and right child
+        return x;
     }
 
     /**
@@ -84,9 +94,10 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
      */
     private TreeNode<T> rotateLeft(TreeNode<T> n) {
         TreeNode x = n.rightChild;
-        TreeNode b = x.leftChild;
+        n.rightChild = x.leftChild;
         x.leftChild = n;
-        n = b.rightChild;
-        return n;
+        n.height = 1 + Math.max(height(n.leftChild), height(n.rightChild));       // update the height of the tree using the height of the left and right child
+        x.height = 1 + Math.max(height(x.leftChild), height(x.rightChild));       // update the height of the tree using the height of the left and right child
+        return x;
     }
 }
