@@ -30,6 +30,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
             add(k);
     }
 
+    //Runtime: O(N)
     public void traversal(TreeNode<T> root, ArrayList<T> list) {
         if (root == null) {
             return;                       //base case: if you run into a leaf, pop out
@@ -109,6 +110,8 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return null;
     }
 
+    //Runtime if balanced: O(logN)
+    //Worst case i.e. all the way to the right: O(N)
     private TreeNode<T> findPredecessor(TreeNode<T> n) {
         TreeNode<T> predecessor;
         if (n.leftChild != null) {                             //if n has a left child
@@ -119,7 +122,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
         else {
             predecessor = n.parent;
-            while (predecessor != null && n.isLeftChild()) {   //while n's parent is and n has a left child
+            while (predecessor != null && n.isLeftChild()) {   //while you're a right child
                 n = predecessor;
                 predecessor = predecessor.parent;
             }
@@ -127,6 +130,8 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return predecessor;
     }
 
+    //Runtime if balanced: O(logN)
+    //Worst case i.e. all the way to the right: O(N)
     private TreeNode<T> findSuccessor(TreeNode<T> n) {
         TreeNode<T> successor;
         if (n.rightChild != null) {

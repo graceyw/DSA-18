@@ -54,6 +54,7 @@ public class RadioTowers {
             if (tow.y <= midY) bottomLy.add(tow);
             else topLy.add(tow);
         }
+
         //checking as we combine
         if (!validTowers(topLx, topLy)) return false;
         if (!validTowers(bottomLx, bottomLy)) return false;
