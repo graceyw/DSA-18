@@ -46,15 +46,19 @@ public class Board {
      * Sum of the manhattan distances between the tiles and the goal
      */
     public int manhattan() {
+        int finalMan = 0;
         for (int i=0; i < tiles.length; i++) {
             for (int j=0; j < tiles.length; j++) {
                 if (tiles[i][j] != goal[i][j] && tiles[i][j] !=0) {                         //if the tile and goal aren't the same
                     int[] goalLocation = getIndices(tiles[i][j], goal);                     //grab the goal location using getIndices
-                    return (Math.abs(i-goalLocation[0])) + Math.abs((j-goalLocation[0]));   //return the distance between the current location and goal location, in both x+y directions
+                    finalMan += (Math.abs(i-goalLocation[0])) + Math.abs((j-goalLocation[1]));
+                    //return (Math.abs(i-goalLocation[0])) + Math.abs((j-goalLocation[0]));   //return the distance between the current location and goal location, in both x+y directions
                 }
             }
         }
-        return 0;                                                                          //if they're referring to the same tile so manhattan distance = 0
+        System.out.print("Manhattan: ");
+        System.out.println(finalMan);
+        return finalMan;                                                                          //if they're referring to the same tile so manhattan distance = 0
     }
 
     /*
@@ -66,11 +70,43 @@ public class Board {
     }
 
     /*
+     * Coverts 2d board to 1d array
+     */
+    public List<Integer> lineBoard(){
+        List<Integer> finalLine = new ArrayList<>();
+        for (int i=0; i<n; i++){
+            for (int j=0; j<n; j++){
+                if (this.tiles[i][j] != 0){
+                    finalLine.add(this.tiles[i][j]);
+                }
+            }
+        }
+        return finalLine;
+    }
+
+    /*
+     * Returns number of inversions in board
+     */
+    public int getInvCount()
+    {
+        List<Integer> Line = lineBoard(); // converts 2d array to 1d array
+        int inv_count = 0;
+        for (int i = 0; i < n*n- 2; i++) {
+            for (int j = i + 1; j < n*n-1; j++) {
+                if (Line.get(i) > Line.get(j)) { //checks whether item at position i is greater than the one after it
+                    inv_count++;
+                }
+            }
+        }
+        return inv_count;
+    }
+
+    /*
      * Returns true if the board is solvable
      * Research how to check this without exploring all states
      */
     public boolean solvable() {
-        if (manhattan() % 2 == 0) return true;     //if manhattan is even, solvable
+        if (this.getInvCount() % 2 == 0) return true;     //if invCount is even, solvable
         return false;                              //if odd, not solvable
     }
 

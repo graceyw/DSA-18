@@ -21,7 +21,6 @@ public class PuzzleTest {
     public void setUp() throws Exception {
         int[][] initState = {{1, 2, 3}, {4, 6, 0}, {7, 5, 8}};
         board = new Board(initState);
-        board.displayBoard();
     }
 
     // Test board methods
@@ -62,6 +61,9 @@ public class PuzzleTest {
 
     }
 
+    /**
+     * Helper fxn to compare boards.
+     */
     public boolean compareBoard(Board board1, Board board2){
         return Arrays.deepEquals(board1.tiles, board2.tiles);
     }
@@ -72,6 +74,20 @@ public class PuzzleTest {
     @Test
     public void testManhattan() {
         assertEquals(board.manhattan(), 3);
+    }
+
+    /**
+     * Test method for void manhattan().
+     */
+    @Test
+    public void testSolvable() {
+        int[][] initState1 = {{1, 8, 2}, {0, 4,3}, {7, 6, 5}};
+        Board newboard1 = new Board(initState1);
+        assertEquals(true, newboard1.solvable());
+
+        int[][] initState2 = {{8, 1, 2}, {0, 4,3}, {7, 6, 5}};
+        Board newboard2 = new Board(initState2);
+        assertEquals(false, newboard2.solvable());
     }
 
     /**
