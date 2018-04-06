@@ -1,3 +1,5 @@
+import jdk.nashorn.api.tree.Tree;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,8 +79,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
             replacement = (n.hasRightChild()) ? n.rightChild : n.leftChild; // replacement is the non-null child
         else {
             // Case 3: two children
-            // TODO
-            replacement = null;
+            replacement = findPredecessor(n);
+            delete(replacement);
+            replacement.moveChildrenFrom(n);
         }
 
         // Put the replacement in its correct place, and set the parent.
@@ -107,13 +110,39 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     private TreeNode<T> findPredecessor(TreeNode<T> n) {
-        // TODO
-        return null;
+        TreeNode<T> predecessor;
+        if (n.leftChild != null) {                             //if n has a left child
+            predecessor = n.leftChild;                         //pred = left child
+            while (predecessor.rightChild != null) {           //while it has a right child
+                predecessor = predecessor.rightChild;          //pred = right child of pred
+            }
+        }
+        else {
+            predecessor = n.parent;
+            while (predecessor != null && n.isLeftChild()) {   //while n's parent is and n has a left child
+                n = predecessor;
+                predecessor = predecessor.parent;
+            }
+        }
+        return predecessor;
     }
 
     private TreeNode<T> findSuccessor(TreeNode<T> n) {
-        // TODO
-        return null;
+        TreeNode<T> successor;
+        if (n.rightChild != null) {
+            successor = n.rightChild;
+            while (successor.leftChild != null) {
+                successor = successor.leftChild;
+            }
+        }
+        else {
+            successor = n.parent;
+            while (successor != null && n.isRightChild()) {
+                n = successor;
+                successor = successor.parent;
+            }
+        }
+        return successor;
     }
 
     /**
