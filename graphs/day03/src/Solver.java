@@ -53,10 +53,8 @@ public class Solver {
      * Return the root state of a given state
      */
     private State root(State state) {
-        // TODO: Your code here
-        return null;
+        return state.prev;
     }
-
 
 
     /*
@@ -93,17 +91,24 @@ public class Solver {
      * Is the input board a solvable state?
      * Research how to check this without exploring all states
      */
-    public boolean isSolvable() {
-        // TODO: Your code here
-        return false;
+    public boolean isSolvable(Board initial) {
+        return initial.solvable();
     }
 
     /*
      * Return the sequence of boards in a shortest solution, null if unsolvable
      */
-    public Iterable<Board> solution() {
-        // TODO: Your code here
-        return null;
+    public Iterable<Board> solution(State solved, State initial) {
+        if (!this.isSolvable(initial.board)){
+            return null;
+        }
+        LinkedList<Board> finalSolution = new LinkedList<>();
+        State current = solved;
+        while (current.moves != 0){
+            finalSolution.addFirst(current.board);
+            current = current.prev;
+        }
+        return finalSolution;
     }
 
     public State find(Iterable<State> iter, Board b) {
