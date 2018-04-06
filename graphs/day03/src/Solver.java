@@ -18,8 +18,8 @@ public class Solver {
     private class State {
         // Each state needs to keep track of its cost and the previous state
         private Board board;
-        private int moves; // equal to g-cost in A*
-        public int cost; // equal to f-cost in A*
+        private int moves;                       // equal to g-cost in A*
+        public int cost;                         // equal to f-cost in A*
         private State prev;
 
         public State(Board board, int moves, State prev) {
@@ -54,10 +54,31 @@ public class Solver {
      */
     public Solver(Board initial) {
         // TODO: Your code here
+        State start = new State(initial, 0, null);
+        ArrayList<State> open = new ArrayList<>();
+        ArrayList<State> closed = new ArrayList<>();
+        open.add(start);
+
+        State closestState = start;
+        while (!open.isEmpty()) {
+            int smallestCost = 100000000;
+            for (State s : open) {
+                if (s.cost < smallestCost) {
+                    smallestCost = s.cost;
+                    closestState = s;              //q in the pseudocode
+                }
+            }
+            Iterable<Board> neighbors = closestState.board.neighbors();
+            for (Board neighBoard : neighbors) {
+                State neighState = new State(neighBoard, closestState.moves+1,closestState);
+                if (neighState.board.equals(solutionState.board)) return;    //stop search because this is the solution
+
+            }
+        }
     }
 
     /*
-     * Is the input board a solvable state
+     * Is the input board a solvable state?
      * Research how to check this without exploring all states
      */
     public boolean isSolvable() {
@@ -91,6 +112,5 @@ public class Solver {
 
         Solver solver = new Solver(initial);
     }
-
 
 }

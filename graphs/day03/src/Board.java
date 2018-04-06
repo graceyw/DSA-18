@@ -11,9 +11,8 @@ public class Board {
     private int n;
     public int[][] tiles;
 
-    //TODO
     // Create a 2D array representing the solved board state
-    private int[][] goal = {{1,2,3}, {4,5,6}, {7,8,0}};
+    public int[][] goal = {{1,2,3}, {4,5,6}, {7,8,0}};
 
     /*
      * Set the global board size and tile state
