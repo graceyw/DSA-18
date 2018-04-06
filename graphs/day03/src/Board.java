@@ -10,6 +10,7 @@ public class Board {
 
     private int n;
     public int[][] tiles;
+    public int misplacedTiles;
 
     //TODO
     // Create a 2D array representing the solved board state
@@ -21,6 +22,7 @@ public class Board {
     public Board(int[][] b) {
         tiles = b;
         n = this.tiles.length;
+        misplacedTiles = this.numMisplaced();
     }
 
     /*
@@ -42,6 +44,19 @@ public class Board {
         return null;
     }
 
+    public int numMisplaced(){
+        int nM = 0;
+
+        for (int i=0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles.length; j++) {
+                if (tiles[i][j] != goal[i][j] && tiles[i][j] != 0) {
+                    nM += 1;
+                }
+            }
+        }
+        return nM;
+    }
+
     /*
      * Sum of the manhattan distances between the tiles and the goal
      */
@@ -49,10 +64,10 @@ public class Board {
         int finalMan = 0;
         for (int i=0; i < tiles.length; i++) {
             for (int j=0; j < tiles.length; j++) {
-                if (tiles[i][j] != goal[i][j] && tiles[i][j] !=0) {                         //if the tile and goal aren't the same
+                if (tiles[i][j] != goal[i][j] && tiles[i][j] != 0) {                         //if the tile and goal aren't the same
                     int[] goalLocation = getIndices(tiles[i][j], goal);                     //grab the goal location using getIndices
-                    finalMan += (Math.abs(i-goalLocation[0])) + Math.abs((j-goalLocation[1]));
-                    //return (Math.abs(i-goalLocation[0])) + Math.abs((j-goalLocation[0]));   //return the distance between the current location and goal location, in both x+y directions
+                    finalMan += (Math.abs(i-goalLocation[0])) + Math.abs((j-goalLocation[1])); //the distance between the current location and goal location, in both x+y directions
+
                 }
             }
         }
