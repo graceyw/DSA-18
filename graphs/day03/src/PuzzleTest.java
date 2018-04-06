@@ -1,6 +1,11 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -21,11 +26,68 @@ public class PuzzleTest {
     // Test board methods
 
     /**
+     * Test method for Iterable<Board> neighbors()
+     */
+    @Test
+    public void testNeighbors(){
+        List<Board> neighborBoards = new ArrayList<>();
+        int[][] n1 = {{1,2,0},{4,6,3}, {7,5,8}};
+        neighborBoards.add(new Board(n1));
+
+        int[][] n2 = {{1,2,3},{4,0,6}, {7,5,8}};
+        neighborBoards.add(new Board(n2));
+
+        int[][] n3 = {{1,2,3},{4,6,8}, {7,5,0}};
+        neighborBoards.add(new Board(n3));
+
+        Iterator<Board> neigh = board.neighbors().iterator();
+
+        List<Board> copy = new ArrayList<Board>();
+        while (neigh.hasNext())
+            copy.add(neigh.next());
+        int equal = 0;
+        if (copy.size() == neighborBoards.size()){
+
+            for (int j = 0; j< copy.size(); j++){
+                for (int l = 0; l<neighborBoards.size(); l++) {
+                    if (compareBoard(copy.get(j), neighborBoards.get(l))) {
+                        equal += 1;
+                    }
+                }
+            }
+        }
+        assertEquals(equal, neighborBoards.size());
+
+
+    }
+
+    /**
+     * Helper fxn to compare boards.
+     */
+    public boolean compareBoard(Board board1, Board board2){
+        return Arrays.deepEquals(board1.tiles, board2.tiles);
+    }
+
+    /**
      * Test method for void manhattan().
      */
     @Test
     public void testManhattan() {
         assertEquals(board.manhattan(), 3);
+    }
+
+    /**
+     * Test method for void manhattan().
+     */
+    @Test
+    public void testSolvable() {
+        int[][] initState1 = {{1, 8, 2}, {0, 4,3}, {7, 6, 5}};
+        Board newboard1 = new Board(initState1);
+        assertEquals(true, newboard1.solvable());
+
+        int[][] initState2 = {{8, 1, 2}, {0, 4,3}, {7, 6, 5}};
+        Board newboard2 = new Board(initState2);
+        assertEquals(false, newboard2.solvable());
     }
 
     /**
