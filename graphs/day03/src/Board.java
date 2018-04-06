@@ -12,7 +12,6 @@ public class Board {
     public int[][] tiles;
     public int misplacedTiles;
 
-    //TODO
     // Create a 2D array representing the solved board state
     private int[][] goal = {{1,2,3}, {4,5,6}, {7,8,0}};
 
