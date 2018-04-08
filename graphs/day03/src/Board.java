@@ -32,6 +32,7 @@ public class Board {
         return tiles.length;
     }
 
+    //Runtime: O(N)
     public int[] getIndices(int num, int[][] board) {
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles.length; j++) {
@@ -43,6 +44,7 @@ public class Board {
         return null;
     }
 
+    //Runtime: O(N)
     public int numMisplaced(){
         int nM = 0;
 
@@ -59,6 +61,7 @@ public class Board {
     /*
      * Sum of the manhattan distances between the tiles and the goal
      */
+    //Runtime: O(N)
     public int manhattan() {
         int finalMan = 0;
         for (int i=0; i < tiles.length; i++) {
@@ -70,14 +73,13 @@ public class Board {
                 }
             }
         }
-        //System.out.print("Manhattan: ");
-        //System.out.println(finalMan);
         return finalMan;                                                                          //if they're referring to the same tile so manhattan distance = 0
     }
 
     /*
      * Compare the current state to the goal state
      */
+    //Runtime: O(N) because equals() is O(N)
     public boolean isGoal() {
         Board solvedB = new Board(goal);
         return equals(solvedB);
@@ -86,6 +88,7 @@ public class Board {
     /*
      * Coverts 2d board to 1d array
      */
+    //Runtime: O(N)
     public List<Integer> lineBoard(){
         List<Integer> finalLine = new ArrayList<>();
         for (int i=0; i<n; i++){
@@ -101,8 +104,8 @@ public class Board {
     /*
      * Returns number of inversions in board
      */
-    public int getInvCount()
-    {
+    //Runtime: O(N^2)
+    public int getInvCount() {
         List<Integer> Line = lineBoard(); // converts 2d array to 1d array
         int inv_count = 0;
         for (int i = 0; i < n*n- 2; i++) {
@@ -119,11 +122,13 @@ public class Board {
      * Returns true if the board is solvable
      * Research how to check this without exploring all states
      */
+    //Runtime: O(N^2) because it calls getInvCount()
     public boolean solvable() {
         if (this.getInvCount() % 2 == 0) return true;     //if invCount is even, solvable
         return false;                              //if odd, not solvable
     }
 
+    //Runtime: O(N) because of copyOf()
     public Board swapTiles(int i, int j, int n, int m){
         int[][] tempB = copyOf(this.tiles);
         int tile1 = tempB[i][j];
@@ -136,6 +141,7 @@ public class Board {
     /*
      * Return all neighboring boards in the state tree
      */
+    //Runtime: O(N)
     public Iterable<Board> neighbors() {
         List<Board> lBoard = new ArrayList<>();
         int[] location = getIndices(0, this.tiles);
@@ -162,6 +168,7 @@ public class Board {
     /**
      * Creates a deep copy of the input array and returns it
      */
+    //Runtime: O(N) because of arraycopy
     private static int[][] copyOf(int[][] A) {
         int[][] B = new int[A.length][A[0].length];
         for (int i = 0; i < A.length; i++)
@@ -173,6 +180,8 @@ public class Board {
      * Check if this board equals a given board state
      */
     @Override
+
+    //Runtime: O(N)
     public boolean equals(Object x) {
         // Check if the board equals an input Board object
         if (x == null) return false;

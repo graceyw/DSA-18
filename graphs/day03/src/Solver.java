@@ -36,6 +36,7 @@ public class Solver {
         /*
          * Finds the cost of a state
          */
+        //Runtime: O(N) because of manhattan() and numMisplaced()
         public int findCost(){
             int g = this.moves;
             int h2 = this.board.manhattan();
@@ -45,6 +46,8 @@ public class Solver {
         }
 
         @Override
+
+        //Runtime: O(N)
         public boolean equals(Object s) {
             if (s == this) return true;
             if (s == null) return false;
@@ -56,6 +59,7 @@ public class Solver {
     /*
      * Return the root state of a given state
      */
+    //Runtime: O(1)
     private State root(State state) {
         return state.prev;
     }
@@ -63,6 +67,7 @@ public class Solver {
     public static Comparator<State> idComp = new Comparator<State>(){
 
         @Override
+        //Runtime: O(1)
         public int compare(State a, State b) {
             if (a.cost<b.cost){
                 return -1;
@@ -80,6 +85,11 @@ public class Solver {
      * Find a solution to the initial board using A* to generate the state tree
      * and a identify the shortest path to the the goal state
      */
+
+    // Cohesive Runtime: O(N^2 * e/v) where:
+    // N is the # of states (open or closed)
+    // e is the total # of connections in the graph (related to # of neighbors)
+    // v is the total # of states in the graph 
     public Solver(Board initial) {
 
         Board goalBoard = new Board(initial.goal);
@@ -91,29 +101,28 @@ public class Solver {
         }
 
         PriorityQueue<State> openQueue = new PriorityQueue<>(idComp);
-        ArrayList<State> open = new ArrayList<>();
         ArrayList<State> closed = new ArrayList<>();
         openQueue.add(start);
 
         State closestState = start;
-        while (!openQueue.isEmpty()) {
+        while (!openQueue.isEmpty()) {                                            //O(N)
 
-            closestState = openQueue.poll();
+            closestState = openQueue.poll();                                      //O(logN)
 
             Iterable<Board> neighbors = closestState.board.neighbors();
-            for (Board neighBoard : neighbors) {
+            for (Board neighBoard : neighbors) {                                  //O(e/v). Also side note: there are 4 neighbors max with this implementation
                 State neighState = new State(neighBoard, closestState.moves+1,closestState);
 
                 if (neighState != null && neighState.board.equals(solutionState.board)) {
                     solutionState.moves = closestState.moves+1;
                     this.minMoves = solutionState.moves;
                     solutionState.prev=closestState;
-                    solution(solutionState);
-                    return;    //stop search because this is the solution
+//                    solution(solutionState);                  //prints steps to find solution
+                    return;                                     //stop search because this is the solution
                 }
 
                 boolean ignore = false;
-                for (State openState: openQueue){
+                for (State openState: openQueue){                                  //O(N)
                     if (openState.board.equals(neighState.board)){
                         ignore = true;
                         if (neighState.cost<openState.cost) {
@@ -123,7 +132,7 @@ public class Solver {
                         }
                     }
                 }
-                for (State closedState: closed){
+                for (State closedState: closed){                                   //O(N)
                     if (closedState.board.equals(neighState.board)){
                         ignore = true;
                         if (neighState.cost<closedState.cost) {
@@ -138,18 +147,16 @@ public class Solver {
                     neighState.prev = closestState;
                     openQueue.add(neighState);
                 }
-
             }
             closed.add(closestState);
         }
-
-
     }
 
     /*
      * Is the input board a solvable state?
      * Research how to check this without exploring all states
      */
+    //Runtime: O(N^2) because of solvable() (which is because of getInvCount())
     public boolean isSolvable() {
         return start.board.solvable();
     }
@@ -157,6 +164,7 @@ public class Solver {
     /*
      * Return the sequence of boards in a shortest solution, null if unsolvable
      */
+    //Runtime: O(N) with N being minMoves
     public Iterable<Board> solution(State solved) {
         if (!this.isSolvable()){
             return null;
@@ -171,6 +179,8 @@ public class Solver {
         return finalSolution;
     }
 
+    //Don't really use this function because we wrote our own in solver where we edit some #s of moves in closed
+    //Runtime: O(N * elems in b)
     public State find(Iterable<State> iter, Board b) {
         for (State s : iter) {
             if (s.board.equals(b)) {
