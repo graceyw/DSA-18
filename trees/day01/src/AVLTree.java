@@ -16,7 +16,10 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
     /**
      * Insert a key into the tree rooted at the given node.
      */
-    @Override
+    @Override   //Means I have to call super.insert in order to access the insert function in BST.java
+    
+    //Runtime: O(logN)? ("How many times can I divide by 2 until I get to 1, i.e. the root?)
+    //logN is also therefore the height of a perfectly balanced binary search tree i.e. whole bottom row is completely filled
     TreeNode<T> insert(TreeNode<T> n, T key) {
         n = super.insert(n, key);
         if (n != null) {
@@ -30,6 +33,8 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
      * Delete the minimum descendant of the given node.
      */
     @Override
+
+    //Runtime: O(logN) because it's logN to find the node and logN to re-balance
     TreeNode<T> deleteMin(TreeNode<T> n) {
         n = super.deleteMin(n);
         if (n != null) {
