@@ -3,7 +3,10 @@
  * Construct a tree of board states using A* to find a path to the goal
  */
 
+import java.sql.SQLOutput;
 import java.util.*;
+import java.util.Comparator;
+
 
 public class Solver {
 
@@ -57,6 +60,20 @@ public class Solver {
         return state.prev;
     }
 
+    public static Comparator<State> idComp = new Comparator<State>(){
+
+        @Override
+        public int compare(State a, State b) {
+            if (a.cost<b.cost){
+                return -1;
+            } else if (b.cost<a.cost){
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+
+    };
 
     /*
      * A* Solver
@@ -64,28 +81,69 @@ public class Solver {
      * and a identify the shortest path to the the goal state
      */
     public Solver(Board initial) {
-        // TODO: Your code here
+
+        Board goalBoard = new Board(initial.goal);
+        solutionState = new State(goalBoard, 0, null);
         start = new State(initial, 0, null);
+
+        if (!this.isSolvable()){
+            return;
+        }
+
+        PriorityQueue<State> openQueue = new PriorityQueue<>(idComp);
         ArrayList<State> open = new ArrayList<>();
         ArrayList<State> closed = new ArrayList<>();
-        open.add(start);
+        openQueue.add(start);
 
         State closestState = start;
-        while (!open.isEmpty()) {
-            int smallestCost = 100000000;
-            for (State s : open) {
-                if (s.cost < smallestCost) {
-                    smallestCost = s.cost;
-                    closestState = s;              //q in the pseudocode
-                }
-            }
+        while (!openQueue.isEmpty()) {
+
+            closestState = openQueue.poll();
+
             Iterable<Board> neighbors = closestState.board.neighbors();
             for (Board neighBoard : neighbors) {
                 State neighState = new State(neighBoard, closestState.moves+1,closestState);
-                if (neighState.board.equals(solutionState.board)) return;    //stop search because this is the solution
+
+                if (neighState != null && neighState.board.equals(solutionState.board)) {
+                    solutionState.moves = closestState.moves+1;
+                    this.minMoves = solutionState.moves;
+                    solutionState.prev=closestState;
+                    solution(solutionState);
+                    return;    //stop search because this is the solution
+                }
+
+                boolean ignore = false;
+                for (State openState: openQueue){
+                    if (openState.board.equals(neighState.board)){
+                        ignore = true;
+                        if (neighState.cost<openState.cost) {
+                            openState.cost = neighState.cost;
+                            openState.moves = neighState.moves;
+                            openState.prev = closestState;
+                        }
+                    }
+                }
+                for (State closedState: closed){
+                    if (closedState.board.equals(neighState.board)){
+                        ignore = true;
+                        if (neighState.cost<closedState.cost) {
+                            closedState.cost = neighState.cost;
+                            closedState.moves = neighState.moves;
+                            closedState.prev = closestState;
+                        }
+                    }
+                }
+
+                if (ignore == false){
+                    neighState.prev = closestState;
+                    openQueue.add(neighState);
+                }
 
             }
+            closed.add(closestState);
         }
+
+
     }
 
     /*
@@ -106,6 +164,7 @@ public class Solver {
         LinkedList<Board> finalSolution = new LinkedList<>();
         State current = solved;
         while (current.moves != 0){
+            current.board.displayBoard();
             finalSolution.addFirst(current.board);
             current = current.prev;
         }

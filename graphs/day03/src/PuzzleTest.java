@@ -98,11 +98,23 @@ public class PuzzleTest {
         assertEquals(board.isGoal(), false);
     }
 
+    /**
+     //     * Test method for Solver - Unsolvable puzzle
+     //     */
+    @Test
+    public void testOurs() {
+        // Unsolvable puzzle
+        int[][] initState = {{7, 1, 4}, {5, 8, 3}, {0, 2, 6}};
+        Board initial = new Board(initState);
+        Solver solver = new Solver(initial);
+        assertEquals(solver.isSolvable(), true);
+    }
+
     // Test solver with several initial board states
 
     /**
-     * Test method for Solver - Unsolvable puzzle
-     */
+//     * Test method for Solver - Unsolvable puzzle
+//     */
     @Test
     public void testSolverUnsolvable() {
         // Unsolvable puzzle
@@ -127,7 +139,7 @@ public class PuzzleTest {
         Solver solver = new Solver(initial);
         assertEquals(solver.isSolvable(), true);
         // Create solution boards list
-        assertEquals(solver.minMoves, 1);
+        assertEquals(1, solver.minMoves);
     }
 
     @Test

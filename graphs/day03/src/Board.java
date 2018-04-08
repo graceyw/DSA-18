@@ -70,8 +70,8 @@ public class Board {
                 }
             }
         }
-        System.out.print("Manhattan: ");
-        System.out.println(finalMan);
+        //System.out.print("Manhattan: ");
+        //System.out.println(finalMan);
         return finalMan;                                                                          //if they're referring to the same tile so manhattan distance = 0
     }
 
@@ -175,8 +175,9 @@ public class Board {
     @Override
     public boolean equals(Object x) {
         // Check if the board equals an input Board object
-        if (x == this) return true;
         if (x == null) return false;
+        if (x == this) return true;
+
         if (!(x instanceof Board)) return false;
         // Check if the same size
         Board y = (Board) x;
