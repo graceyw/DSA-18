@@ -89,7 +89,7 @@ public class Solver {
     // Cohesive Runtime: O(N^2 * e/v) where:
     // N is the # of states (open or closed)
     // e is the total # of connections in the graph (related to # of neighbors)
-    // v is the total # of states in the graph 
+    // v is the total # of states in the graph
     public Solver(Board initial) {
 
         Board goalBoard = new Board(initial.goal);
