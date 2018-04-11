@@ -199,8 +199,53 @@ public class RubiksCube {
 
     // return the list of rotations needed to solve a rubik's cube
     public List<Character> solve() {
-        // TODO
-        return new ArrayList<>();
+
+        PriorityQueue<RubiksCube> open = new PriorityQueue<>();
+        ArrayList<RubiksCube> closed = new ArrayList<>();
+
+        RubiksCube addCube;
+        boolean ignore;
+        //RubiksCube currentState = RubiksCube(this);
+
+        open.add(this);
+
+        while (!open.isEmpty()) {
+            RubiksCube temp = open.poll();
+            for (RubiksCube b : neighbors()) {
+                addCube = new RubiksCube(b.cube);
+                if (b.isSolved()) {
+                    this.solutionState = addState;
+                    this.solved = true;
+                    this.minMoves = addState.moves;
+                }
+//                ignore = false;
+//
+//                for (State s: minCosts) {
+//                    if(s.equals(addState) && s.cost <= addState.cost){
+//                        ignore = true;
+//                        break;
+//                    }
+//                }
+//
+//                for (State s: every){
+//                    if(s.equals(addState) && s.cost <= addState.cost){
+//                        ignore = true;
+//                        break;
+//                    }
+//                }
+//                if(!ignore) {
+//                    minCosts.add(addState);
+//                }
+//            }
+//            every.add(temp);
+//
+//        }
+
+                return new ArrayList<>();
+            }
+
+        }
+
     }
 
 }
