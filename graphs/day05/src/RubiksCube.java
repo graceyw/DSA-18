@@ -198,8 +198,10 @@ public class RubiksCube {
 
 
     // return the list of rotations needed to solve a rubik's cube
+        // return the list of rotations needed to solve a rubik's cube
     public List<Character> solve() {
 
+        // should we keep a list of rotations in the stucture of each cube?
         PriorityQueue<RubiksCube> open = new PriorityQueue<>();
         ArrayList<RubiksCube> closed = new ArrayList<>();
 
@@ -214,38 +216,37 @@ public class RubiksCube {
             for (RubiksCube b : neighbors()) {
                 addCube = new RubiksCube(b.cube);
                 if (b.isSolved()) {
-                    this.solutionState = addState;
-                    this.solved = true;
-                    this.minMoves = addState.moves;
-                }
-//                ignore = false;
-//
-//                for (State s: minCosts) {
-//                    if(s.equals(addState) && s.cost <= addState.cost){
-//                        ignore = true;
-//                        break;
-//                    }
-//                }
-//
-//                for (State s: every){
-//                    if(s.equals(addState) && s.cost <= addState.cost){
-//                        ignore = true;
-//                        break;
-//                    }
-//                }
-//                if(!ignore) {
-//                    minCosts.add(addState);
-//                }
-//            }
-//            every.add(temp);
-//
-//        }
+                    // TODO: return list of moves
 
-                return new ArrayList<>();
+                    //this.solutionState = addCube;
+                    //this.solved = true;
+                    //this.minMoves = addState.moves;
+                }
+                ignore = false;
+
+                for (RubiksCube r: open) {
+                    // TODO: make a cost function
+                    if(r.equals(addCube) && r.cost <= addCube.cost){
+                        ignore = true;
+                        break;
+                    }
+                }
+
+                for (RubiksCube r: closed){
+                    if(r.equals(addCube) && r.cost <= addCube.cost){
+                        ignore = true;
+                        break;
+                    }
+                }
+                if(!ignore) {
+                    open.add(addCube);
+                }
             }
+            closed.add(temp);
 
         }
 
+        return new ArrayList<>(); 
     }
 
 }
