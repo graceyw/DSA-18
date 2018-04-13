@@ -196,6 +196,14 @@ public class RubiksCube {
         return cubeNeighbors;
     }
 
+    public int heuristic(BitSet test){
+        // Come up with function to check if face is near the correct plane
+        
+
+        // Run for all colors
+
+    }
+
 
     // return the list of rotations needed to solve a rubik's cube
     public List<Character> solve() {
