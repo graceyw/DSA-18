@@ -7,6 +7,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class RubiksCube {
 
     private BitSet cube;
+    private ArrayList<Character> moves;
+    private int cost = findCost();
 
     // initialize a solved rubiks cube
     public RubiksCube() {
@@ -214,7 +216,7 @@ public class RubiksCube {
 
     //Runtime: O(N) because of manhattan() and numMisplaced()
     public int findCost(){
-        int g = this.moves;
+        int g = this.moves.size();
         int h2 = this.cube.manhattan();
         int h1 = this.cube.numMisplaced();
         int f = g+h1+h2;
@@ -224,8 +226,6 @@ public class RubiksCube {
     // return the list of rotations needed to solve a rubik's cube
     public List<Character> solve() {
 
-        // should we keep a list of rotations in the structure of each cube?
-        // I think we should keep track of the moves and rotations within the cube, or in another variable like "state" -G
         PriorityQueue<RubiksCube> open = new PriorityQueue<>(idComp);
         ArrayList<RubiksCube> closed = new ArrayList<>();
 
@@ -233,7 +233,7 @@ public class RubiksCube {
         boolean ignore;
         //RubiksCube currentState = RubiksCube(this);
 
-        open.add(this);    //is this automatically adding the curr cube before we've checked whether it exists in closed? -G
+        open.add(this);
 
         while (!open.isEmpty()) {
             RubiksCube temp = open.poll();
@@ -242,8 +242,6 @@ public class RubiksCube {
                 addCube = new RubiksCube(neigh.cube);
 
                 if (neigh.isSolved()) {
-                    // TODO: return list of moves
-                    // I think we should just add moves as an attribute of a cube, and then we can just return moves here, and moves.length when comparing -G
                     return neigh.moves;
                     //this.solutionState = addCube;
                     //this.solved = true;
@@ -251,25 +249,22 @@ public class RubiksCube {
                 }
                 ignore = false;
 
-                for (RubiksCube r: open) {
-                    // TODO: make a cost function
-                    // first draft above -G
-
-                    if(r.equals(addCube)){
+                for (RubiksCube currCube: open) {
+                    if(currCube.equals(addCube)){
                         ignore = true;
-                        if (neigh.cost <= r.cost) {
-                            r.cost = neigh.cost;
-                            r.moves = neigh.moves;
+                        if (neigh.cost <= currCube.cost) {
+                            currCube.cost = neigh.cost;
+                            currCube.moves = neigh.moves;
                         }
                     }
                 }
 
-                for (RubiksCube r: closed){
-                    if(r.equals(addCube)) {
+                for (RubiksCube visitedCube: closed){
+                    if(visitedCube.equals(addCube)) {
                         ignore = true;
-                        if (neigh.moves.length <= r.moves.length) {  //I might be confused but why doesn't moves.length = cost? Cause cost will incorporate the manhattan distance? idk we haven't written it yet lol
-                            r.cost = neigh.cost;
-                            r.moves = neigh.moves;
+                        if (neigh.moves.size() <= visitedCube.moves.size()) {
+                            visitedCube.cost = neigh.cost;
+                            visitedCube.moves = neigh.moves;
                         }
                     }
                 }
@@ -278,10 +273,7 @@ public class RubiksCube {
                 }
             }
             closed.add(temp);
-
         }
-
-        return new ArrayList<>(); 
+        return new ArrayList<>();
     }
-
 }
