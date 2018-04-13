@@ -56,7 +56,7 @@ public class RubiksCube {
 
     public boolean isSolved() {
         return this.equals(new RubiksCube());
-    }
+    }  //works bc new RubiksCubes start out solved
 
 
     // takes in 3 bits where bitset.get(0) is the MSB, returns the corresponding int
@@ -243,8 +243,6 @@ public class RubiksCube {
 
                 if (neigh.isSolved()) {
                     return neigh.moves;
-                    //this.solutionState = addCube;
-                    //this.solved = true;
                     //this.minMoves = addState.moves;
                 }
                 ignore = false;
