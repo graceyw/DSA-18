@@ -8,6 +8,57 @@ public class RubiksCube {
 
     private BitSet cube;
 
+
+    private HashMap<Integer, Set<Integer>> sideMap = new HashMap<Integer, Set<Integer>>()
+    {{
+        // Color 0 indices
+        put(0, new HashSet<>()
+        {{
+            add(0);
+            add(1);
+            add(2);
+            add(3);
+            add(4);
+            add(5);
+            add(8);
+            add(9);
+            add(16);
+            add(17);
+            add(20);
+            add(21);
+        }});
+
+        // Color 1 indices
+        put(1, new HashSet<>(){{
+            add(4);
+            add(5);
+            add(6);
+            add(7);
+            add(8);
+            add(11);
+            add(3);
+            add(2);
+            add(15);
+            add(14);
+            add(20);
+            add(23);
+        }});
+        put(2, new HashSet<>(){{
+            add(8);
+            add(9);
+            add(10);
+            add(11);
+            add(5);
+            add(6);
+            add(1);
+            add(2);
+            add(17);
+            add(18);
+            add(13);
+            add(14);
+        }});
+    }};
+
     // initialize a solved rubiks cube
     public RubiksCube() {
         // 24 colors to store, each takes 3 bits
@@ -196,18 +247,110 @@ public class RubiksCube {
         return cubeNeighbors;
     }
 
-    public int heuristic(BitSet test){
-        // Come up with function to check if face is near the correct plane
-        
+    public float heuristic(){
+        //TODO: Make the dictionary based on BitSet not integers
 
         // Run for all colors
-
+        int h = 0;
+        for (int i = 0; i < 24; i++){
+            int color = getColor(i);
+            boolean reverse = false;
+            if (color > 2){
+                color -= 3;
+                reverse = true;
+            }
+            boolean onside = sideMap.get(color).contains(i);
+            boolean val = ((onside || reverse) && ! (onside && reverse)); //returns true if is on correct side, and false if not
+            h += val ? 0 : 1; //adds 0 when on correct, adds 1 when not
+        }
+        return h/4.0f;
     }
 
+    public static Comparator<RubiksCube> idComp = new Comparator<RubiksCube>(){
+
+        @Override
+        //Runtime: O(1)
+        public int compare(RubiksCube a, RubiksCube b) {
+            if (a.cost<b.cost){
+                return -1;
+            } else if (b.cost<a.cost){
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+
+    };
+
+    //Runtime: O(N) because of manhattan() and numMisplaced()
+    public int findCost(){
+        int g = this.moves;
+        int h2 = this.cube.manhattan();
+        int h1 = this.cube.numMisplaced();
+        int f = g+h1+h2;
+        return f;
+    }
 
     // return the list of rotations needed to solve a rubik's cube
     public List<Character> solve() {
-        // TODO
+
+        // should we keep a list of rotations in the structure of each cube?
+        // I think we should keep track of the moves and rotations within the cube, or in another variable like "state" -G
+        PriorityQueue<RubiksCube> open = new PriorityQueue<>(idComp);
+        ArrayList<RubiksCube> closed = new ArrayList<>();
+
+        RubiksCube addCube;
+        boolean ignore;
+        //RubiksCube currentState = RubiksCube(this);
+
+        open.add(this);    //is this automatically adding the curr cube before we've checked whether it exists in closed? -G
+
+        while (!open.isEmpty()) {
+            RubiksCube temp = open.poll();
+
+            for (RubiksCube neigh : neighbors()) {
+                addCube = new RubiksCube(neigh.cube);
+
+                if (neigh.isSolved()) {
+                    // TODO: return list of moves
+                    // I think we should just add moves as an attribute of a cube, and then we can just return moves here, and moves.length when comparing -G
+                    return neigh.moves;
+                    //this.solutionState = addCube;
+                    //this.solved = true;
+                    //this.minMoves = addState.moves;
+                }
+                ignore = false;
+
+                for (RubiksCube r: open) {
+                    // TODO: make a cost function
+                    // first draft above -G
+
+                    if(r.equals(addCube)){
+                        ignore = true;
+                        if (neigh.cost <= r.cost) {
+                            r.cost = neigh.cost;
+                            r.moves = neigh.moves;
+                        }
+                    }
+                }
+
+                for (RubiksCube r: closed){
+                    if(r.equals(addCube)) {
+                        ignore = true;
+                        if (neigh.moves.length <= r.moves.length) {  //I might be confused but why doesn't moves.length = cost? Cause cost will incorporate the manhattan distance? idk we haven't written it yet lol
+                            r.cost = neigh.cost;
+                            r.moves = neigh.moves;
+                        }
+                    }
+                }
+                if(!ignore) {
+                    open.add(addCube);
+                }
+            }
+            closed.add(temp);
+
+        }
+
         return new ArrayList<>();
     }
 

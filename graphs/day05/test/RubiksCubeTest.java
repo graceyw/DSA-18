@@ -28,7 +28,7 @@ public class RubiksCubeTest {
     @Test
     public void testRotatesDoNotModify() {
         RubiksCube r = new RubiksCube();
-        r.rotate('r');
+        r.rotate('r')
         assertTrue(r.isSolved());
         r.rotate('f');
         assertTrue(r.isSolved());

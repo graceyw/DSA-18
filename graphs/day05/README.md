@@ -1,6 +1,6 @@
 ## Graphs 05
 
-This homework is due on **Tuesday, April 24th**
+This homework is due on **Tuesday, April 17th**
 It is strongly recommended you work with a partner for this assignment
 
 Congrats on solving the 8-puzzle! We now have another classic challenge for you: solve a Rubik’s Cube! For computation’s sake, we are only asking you to solve a 2x2x2 cube. Due to the potential complexity of this assignment we are giving you two options for this homework. But first some terminology:
