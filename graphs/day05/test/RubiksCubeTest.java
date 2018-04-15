@@ -64,7 +64,6 @@ public class RubiksCubeTest {
         assertEquals(r1.rotate(scramble).hashCode(), r2.rotate(scramble).hashCode());
     }
 
-
     private void testRotation(char rotation) {
         RubiksCube r1 = new RubiksCube();
         RubiksCube r2 = new RubiksCube();

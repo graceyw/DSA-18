@@ -324,8 +324,8 @@ public class RubiksCube {
 
                 for (RubiksCube currCube: open) {
                     if(currCube.equals(addCube)){
-                        ignore = true;
-                        if (neigh.cost <= currCube.cost) {
+                        if (currCube.cost < neigh.cost) {
+                            ignore = true;
                             currCube.cost = neigh.cost;
                             currCube.moves = neigh.moves;
                         }
@@ -334,8 +334,8 @@ public class RubiksCube {
 
                 for (RubiksCube visitedCube: closed){
                     if(visitedCube.equals(addCube)) {
-                        ignore = true;
-                        if (neigh.moves.size() <= visitedCube.moves.size()) {
+                        if (visitedCube.cost < neigh.cost) {
+                            ignore = true;
                             visitedCube.cost = neigh.cost;
                             visitedCube.moves = neigh.moves;
                         }
