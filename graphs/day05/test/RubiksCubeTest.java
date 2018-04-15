@@ -149,6 +149,7 @@ public class RubiksCubeTest {
 
     @Test
     public void testSolve7() {
+        // can be solved with [f, U, F, r, f]
         RubiksCube c = new RubiksCube().rotate(Arrays.asList('u', 'r', 'u', 'F', 'U', 'R', 'F'));
         RubiksCube copy = new RubiksCube(c);
         List<Character> solution = c.solve();
