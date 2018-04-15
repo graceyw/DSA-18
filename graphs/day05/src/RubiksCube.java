@@ -8,7 +8,7 @@ public class RubiksCube {
 
     private BitSet cube;
     private ArrayList<Character> moves;
-    private int cost = findCost();
+    private float cost = findCost();
 
 
     private HashMap<Integer, Set<Integer>> sideMap = new HashMap<Integer, Set<Integer>>()
@@ -249,7 +249,7 @@ public class RubiksCube {
         return cubeNeighbors;
     }
 
-    public float heuristic(){
+    public float manhattan(){
         //TODO: Make the dictionary based on BitSet not integers
 
         // Run for all colors
@@ -285,11 +285,11 @@ public class RubiksCube {
     };
 
     //Runtime: O(N) because of manhattan() and numMisplaced()
-    public int findCost(){
+    public float findCost(){
         int g = this.moves.size();
-        int h2 = this.cube.manhattan();
-        int h1 = this.cube.numMisplaced();
-        int f = g+h1+h2;
+        float h2 = manhattan();
+        //int h1 = this.cube.numMisplaced();
+        float f = g+h2; //g+h1+h2;
         return f;
     }
 
