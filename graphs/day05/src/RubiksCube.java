@@ -76,13 +76,11 @@ public class RubiksCube {
     // initialize a rubiks cube with the input bitset
     private RubiksCube(BitSet s) {
         cube = (BitSet) s.clone();
-        cost = findCost();
     }
 
     // creates a copy of the rubics cube
     public RubiksCube(RubiksCube r) {
         cube = (BitSet) r.cube.clone();
-        cost = findCost();
     }
 
     // return true if this rubik's cube is equal to the other rubik's cube
@@ -201,10 +199,11 @@ public class RubiksCube {
             sidesTo = temp;
         }
         RubiksCube res = new RubiksCube(cube);
-        res.moves = moves;
+        res.moves = new ArrayList<>(moves);
         res.moves.add(c);
         for (int i = 0; i < faceFrom.length; i++) res.setColor(faceTo[i], this.getColor(faceFrom[i]));
         for (int i = 0; i < sidesFrom.length; i++) res.setColor(sidesTo[i], this.getColor(sidesFrom[i]));
+        res.cost = res.findCost();
         return res;
     }
 
@@ -250,6 +249,9 @@ public class RubiksCube {
         char[] possibleTurns = {'u', 'U', 'r', 'R', 'f', 'F'};
         for(int i = 0; i<possibleTurns.length;i++){
             RubiksCube RC = new RubiksCube(this);
+            RC.moves = new ArrayList<>(moves);
+            RC.cost = RC.findCost();
+
             cubeNeighbors.add(RC.rotate(possibleTurns[i]));
         }
         return cubeNeighbors;
@@ -306,6 +308,9 @@ public class RubiksCube {
         ArrayList<RubiksCube> closed = new ArrayList<>();
 
         boolean ignore;
+        moves = new ArrayList<>();
+        cost = 0;
+
         //RubiksCube currentState = RubiksCube(this);
 
         open.add(this);
@@ -327,7 +332,7 @@ public class RubiksCube {
                         if (currCube.cost < neigh.cost) {
                             ignore = true;
                             currCube.cost = neigh.cost;
-                            currCube.moves = neigh.moves;
+                            currCube.moves = new ArrayList<>(neigh.moves);
                         }
                     }
                 }
@@ -337,7 +342,7 @@ public class RubiksCube {
                         if (visitedCube.cost < neigh.cost) {
                             ignore = true;
                             visitedCube.cost = neigh.cost;
-                            visitedCube.moves = neigh.moves;
+                            visitedCube.moves = new ArrayList<>(neigh.moves);
                         }
                     }
                 }
