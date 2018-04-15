@@ -335,7 +335,7 @@ public class RubiksCube {
                 for (RubiksCube visitedCube: closed){
                     if(visitedCube.equals(addCube)) {
                         ignore = true;
-                        if (neigh.moves.size() <= visitedCube.moves.size()) {
+                        if (neigh.cost <= visitedCube.cost) {
                             visitedCube.cost = neigh.cost;
                             visitedCube.moves = neigh.moves;
                         }
