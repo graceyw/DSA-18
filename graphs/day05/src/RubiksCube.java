@@ -201,6 +201,7 @@ public class RubiksCube {
             sidesTo = temp;
         }
         RubiksCube res = new RubiksCube(cube);
+        res.moves = moves;
         res.moves.add(c);
         for (int i = 0; i < faceFrom.length; i++) res.setColor(faceTo[i], this.getColor(faceFrom[i]));
         for (int i = 0; i < sidesFrom.length; i++) res.setColor(sidesTo[i], this.getColor(sidesFrom[i]));
@@ -304,7 +305,6 @@ public class RubiksCube {
         PriorityQueue<RubiksCube> open = new PriorityQueue<>(idComp);
         ArrayList<RubiksCube> closed = new ArrayList<>();
 
-        RubiksCube addCube;
         boolean ignore;
         //RubiksCube currentState = RubiksCube(this);
 
@@ -313,8 +313,7 @@ public class RubiksCube {
         while (!open.isEmpty()) {
             RubiksCube temp = open.poll();
 
-            for (RubiksCube neigh : neighbors()) {
-                addCube = new RubiksCube(neigh.cube);
+            for (RubiksCube neigh : temp.neighbors()) {
 
                 if (neigh.isSolved()) {
                     return neigh.moves;
@@ -323,7 +322,7 @@ public class RubiksCube {
                 ignore = false;
 
                 for (RubiksCube currCube: open) {
-                    if(currCube.equals(addCube)){
+                    if(currCube.equals(neigh)){
                         if (currCube.cost < neigh.cost) {
                             ignore = true;
                             currCube.cost = neigh.cost;
@@ -333,7 +332,7 @@ public class RubiksCube {
                 }
 
                 for (RubiksCube visitedCube: closed){
-                    if(visitedCube.equals(addCube)) {
+                    if(visitedCube.equals(neigh)) {
                         if (visitedCube.cost < neigh.cost) {
                             ignore = true;
                             visitedCube.cost = neigh.cost;
@@ -342,7 +341,7 @@ public class RubiksCube {
                     }
                 }
                 if(!ignore) {
-                    open.add(addCube);
+                    open.add(neigh);
                 }
             }
             closed.add(temp);
