@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class RubiksCube {
 
     private BitSet cube;
-    private ArrayList<Character> moves;
+    private ArrayList<Character> moves = new ArrayList<>();
     private float cost = findCost();
 
 
@@ -198,6 +198,7 @@ public class RubiksCube {
             sidesTo = temp;
         }
         RubiksCube res = new RubiksCube(cube);
+        res.moves.add(c);
         for (int i = 0; i < faceFrom.length; i++) res.setColor(faceTo[i], this.getColor(faceFrom[i]));
         for (int i = 0; i < sidesFrom.length; i++) res.setColor(sidesTo[i], this.getColor(sidesFrom[i]));
         return res;
