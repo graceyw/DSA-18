@@ -311,12 +311,13 @@ public class RubiksCube {
         open.add(this);
 
         while (!open.isEmpty()) {
-            RubiksCube temp = open.poll();
+            RubiksCube temp = open.poll();   //highest priority, lowest cost cube
 
-            for (RubiksCube neigh : neighbors()) {
+            for (RubiksCube neigh : temp.neighbors()) {
                 addCube = new RubiksCube(neigh.cube);
 
                 if (neigh.isSolved()) {
+                    System.out.println(neigh.moves);
                     return neigh.moves;
                     //this.minMoves = addState.moves;
                 }
