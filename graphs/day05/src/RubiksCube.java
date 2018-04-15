@@ -245,7 +245,8 @@ public class RubiksCube {
         ArrayList<RubiksCube> cubeNeighbors = new ArrayList<RubiksCube>();
         char[] possibleTurns = {'u', 'U', 'r', 'R', 'f', 'F'};
         for(int i = 0; i<possibleTurns.length;i++){
-            cubeNeighbors.add(rotate(possibleTurns[i]));
+            RubiksCube RC = new RubiksCube(this);
+            cubeNeighbors.add(RC.rotate(possibleTurns[i]));
         }
         return cubeNeighbors;
     }
