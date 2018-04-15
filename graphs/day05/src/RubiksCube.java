@@ -8,7 +8,7 @@ public class RubiksCube {
 
     private BitSet cube;
     private ArrayList<Character> moves = new ArrayList<>();
-    private float cost = findCost();
+    private float cost;
 
 
     private HashMap<Integer, Set<Integer>> sideMap = new HashMap<Integer, Set<Integer>>()
@@ -70,16 +70,19 @@ public class RubiksCube {
                 setColor(side * 4 + i, side);
             }
         }
+        cost = findCost();
     }
 
     // initialize a rubiks cube with the input bitset
     private RubiksCube(BitSet s) {
         cube = (BitSet) s.clone();
+        cost = findCost();
     }
 
     // creates a copy of the rubics cube
     public RubiksCube(RubiksCube r) {
         cube = (BitSet) r.cube.clone();
+        cost = findCost();
     }
 
     // return true if this rubik's cube is equal to the other rubik's cube
