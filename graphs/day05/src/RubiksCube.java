@@ -1,65 +1,22 @@
+import java.awt.*;
+import java.security.InvalidKeyException;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 
 // this is our implementation of a rubiks cube. It is your job to use A* or some other search algorithm to write a
 // solve() function
-public class RubiksCube {
+public class RubiksCube implements Comparable<RubiksCube>{
 
     private BitSet cube;
-    private ArrayList<Character> moves = new ArrayList<>();
+    ArrayList<Character> moves = new ArrayList<>();
     private float cost;
+    //private int movenum;
+    //private char lastmove;
+    //private RubiksCube lastcube;
 
 
-    private HashMap<Integer, Set<Integer>> sideMap = new HashMap<Integer, Set<Integer>>()
-    {{
-        // Color 0 indices
-        put(0, new HashSet<>()
-        {{
-            add(0);
-            add(1);
-            add(2);
-            add(3);
-            add(4);
-            add(5);
-            add(8);
-            add(9);
-            add(16);
-            add(17);
-            add(20);
-            add(21);
-        }});
-
-        // Color 1 indices
-        put(1, new HashSet<>(){{
-            add(4);
-            add(5);
-            add(6);
-            add(7);
-            add(8);
-            add(11);
-            add(3);
-            add(2);
-            add(15);
-            add(14);
-            add(20);
-            add(23);
-        }});
-        put(2, new HashSet<>(){{
-            add(8);
-            add(9);
-            add(10);
-            add(11);
-            add(5);
-            add(6);
-            add(1);
-            add(2);
-            add(17);
-            add(18);
-            add(13);
-            add(14);
-        }});
-    }};
 
     // initialize a solved rubiks cube
     public RubiksCube() {
@@ -199,11 +156,15 @@ public class RubiksCube {
             sidesTo = temp;
         }
         RubiksCube res = new RubiksCube(cube);
-        res.moves = new ArrayList<>(moves);
+        //res.lastmove = c;
+        //res.movenum += movenum; //new ArrayList<>(moves);
+        //res.lastcube = this;
+        res.moves = new ArrayList<>(moves); // TIMING: THIS ADDS A DECENT AMOUNT OF TIME
         res.moves.add(c);
+        //System.out.println(res.moves.size());
         for (int i = 0; i < faceFrom.length; i++) res.setColor(faceTo[i], this.getColor(faceFrom[i]));
         for (int i = 0; i < sidesFrom.length; i++) res.setColor(sidesTo[i], this.getColor(sidesFrom[i]));
-        res.cost = res.findCost();
+        res.cost = res.findCost(); //find the cost now that the cube has been rotated
         return res;
     }
 
@@ -248,11 +209,11 @@ public class RubiksCube {
         ArrayList<RubiksCube> cubeNeighbors = new ArrayList<RubiksCube>();
         char[] possibleTurns = {'u', 'U', 'r', 'R', 'f', 'F'};
         for(int i = 0; i<possibleTurns.length;i++){
-            RubiksCube RC = new RubiksCube(this);
-            RC.moves = new ArrayList<>(moves);
-            RC.cost = RC.findCost();
+            /*RubiksCube RC = new RubiksCube(this);
+            RC.movenum = new ArrayList<>(moves);
+            RC.cost = RC.findCost();*/
 
-            cubeNeighbors.add(RC.rotate(possibleTurns[i]));
+            cubeNeighbors.add(rotate(possibleTurns[i]));
         }
         return cubeNeighbors;
     }
@@ -269,89 +230,161 @@ public class RubiksCube {
                 color -= 3;
                 reverse = true;
             }
-            boolean onside = sideMap.get(color).contains(i);
+            boolean onside = Globals.sideMap.get(color).contains(i);
             boolean val = ((onside || reverse) && ! (onside && reverse)); //returns true if is on correct side, and false if not
             h += val ? 0 : 1; //adds 0 when on correct, adds 1 when not
         }
         return h/4.0f;
     }
 
-    public static Comparator<RubiksCube> idComp = new Comparator<RubiksCube>(){
+    public float ColorManhattan(){
 
-        @Override
-        //Runtime: O(1)
-        public int compare(RubiksCube a, RubiksCube b) {
-            if (a.cost<b.cost){
-                return -1;
-            } else if (b.cost<a.cost){
-                return 1;
-            } else {
-                return 0;
+        int h = 0;
+        for (int i = 0; i < 24; i++){
+            int color = getColor(i);
+            int[] loc = Globals.indexLocMap.get(i);
+            switch(color){
+                case 0:
+                    h += (1-loc[2])+1;
+                    break;
+                case 1:
+                    h += (1-loc[0])+1;
+                    break;
+                case 2:
+                    h += (1-loc[1])+1;
+                    break;
+                case 3:
+                    h += loc[2]+1;
+                    break;
+                case 4:
+                    h += loc[0]+1;
+                    break;
+                case 5:
+                    h += loc[1]+1;
+                    break;
+                default:
+                    throw new IllegalArgumentException();
             }
         }
+        return h/8.0f;
+    }
 
-    };
+    public float FaceCheck(){ //Slower
+
+        int h = 0;
+        for (int i = 0; i < 24; i++){
+            int color = getColor(i);
+            if (color != Math.floor(i/4)) {
+                h+=1;
+            }
+        }
+        return h/8.0f;
+    }
+
+    
+
+    //public static Comparator<RubiksCube> idComp = new Comparator<RubiksCube>(){
+
+    @Override
+    //Runtime: O(1)
+    public int compareTo(RubiksCube a) {
+        return Float.compare(cost, a.cost);
+        /*
+        if (a.cost<b.cost){
+            return -1;
+        } else if (b.cost<a.cost){
+            return 1;
+        } else {
+            return 0;
+        }*/
+    }
+
+    //};
 
     //Runtime: O(N) because of manhattan() and numMisplaced()
     public float findCost(){
         int g = this.moves.size();
-        float h2 = manhattan();
+        float h2 = ColorManhattan();//manhattan();
         //int h1 = this.cube.numMisplaced();
         float f = g+h2; //g+h1+h2;
         return f;
     }
 
     // return the list of rotations needed to solve a rubik's cube
-    public List<Character> solve() {
+    public List<Character> solve() { //O(E log (V))
 
-        PriorityQueue<RubiksCube> open = new PriorityQueue<>(idComp);
-        ArrayList<RubiksCube> closed = new ArrayList<>();
+        PriorityQueue<RubiksCube> open = new PriorityQueue<RubiksCube>();
+        HashMap<BitSet, Float> openMap = new HashMap<>();
+        HashMap<BitSet, Float> closed = new HashMap<BitSet, Float>();
 
-        boolean ignore;
+        //boolean ignore;
         moves = new ArrayList<>();
         cost = 0;
+        //movenum = 0;
+        //lastcube = null;
+        //lastmove = Character.MIN_VALUE;
 
         //RubiksCube currentState = RubiksCube(this);
 
-        open.add(this);
+        open.offer(this);
+        openMap.put(cube, cost);
 
         while (!open.isEmpty()) {
             RubiksCube temp = open.poll();   //highest priority, lowest cost cube
+            //openMap.remove(temp);
 
             for (RubiksCube neigh : temp.neighbors()) {
+                //System.out.println(open.size() + " | " + closed.size());
 
                 if (neigh.isSolved()) {
+                    //ArrayList<Character> moves = neigh.RebuildMoves(new ArrayList<Character>());
                     System.out.println(neigh.moves);
                     return neigh.moves;
                     //this.minMoves = addState.moves;
                 }
-                ignore = false;
+                boolean ignore = false;
 
-                for (RubiksCube currCube: open) {
-                    if(currCube.equals(neigh)){
-                        if (currCube.cost < neigh.cost) {
+                if (openMap.containsKey(neigh.cube)){
+                //for (RubiksCube currCube: open) {
+                    float openCost = openMap.get(neigh.cube);
+                    if (openCost <= neigh.cost) {
+                        //System.out.println("already here");
+                        ignore = true;
+                    }
+                    /*} else {
+                        //System.out.println("Replacing this");
+                        open.remove(currCube);
+                        open.offer(neigh);
+                        ignore = true;
+                        break;
+                    }*/
+                }
+                if (!ignore) {
+                    //for (RubiksCube visitedCube : closed) {
+                    if (closed.containsKey(neigh.cube)){
+                        float visitedCubeCost = closed.get(neigh.cube);
+                        if (visitedCubeCost <= neigh.cost) {
                             ignore = true;
-                            currCube.cost = neigh.cost;
-                            currCube.moves = new ArrayList<>(neigh.moves);
-                        }
+                        } // TIMING: should there be an else statement?
                     }
                 }
 
-                for (RubiksCube visitedCube: closed){
-                    if(visitedCube.equals(neigh)) {
-                        if (visitedCube.cost < neigh.cost) {
-                            ignore = true;
-                            visitedCube.cost = neigh.cost;
-                            visitedCube.moves = new ArrayList<>(neigh.moves);
-                        }
-                    }
-                }
                 if(!ignore) {
-                    open.add(neigh);
+                    open.offer(neigh); // O(log(V))
+                    openMap.put(neigh.cube, neigh.cost);
                 }
             }
-            closed.add(temp);
+            closed.put(temp.cube, temp.cost);
         }
         return new ArrayList<>();
     }
+
+    /*public ArrayList<Character> RebuildMoves(ArrayList<Character> movelist){
+        if (lastmove == Character.MIN_VALUE){
+            return movelist;
+        }
+        movelist = lastcube.RebuildMoves(movelist);
+        movelist.add(lastmove);
+        return movelist;
+    }*/
 }
