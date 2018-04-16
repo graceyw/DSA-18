@@ -262,6 +262,7 @@ public class RubiksCube {
 
         // Run for all colors
         int h = 0;
+        return h;
         for (int i = 0; i < 24; i++){
             int color = getColor(i);
             boolean reverse = false;
@@ -292,7 +293,8 @@ public class RubiksCube {
 
     };
 
-    //Runtime: O(N) because of manhattan() and numMisplaced()
+    //Heuristic Function
+    //Runtime: O() because of manhattan()
     public float findCost(){
         int g = this.moves.size();
         float h2 = manhattan();
