@@ -1,10 +1,11 @@
+
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 
 // this is our implementation of a rubiks cube. It is your job to use A* or some other search algorithm to write a
 // solve() function
-public class RubiksCube {
+public class RubiksCube implements Comparable<RubiksCube> {
 
     private BitSet cube;
     private ArrayList<Character> moves = new ArrayList<>();
@@ -14,7 +15,7 @@ public class RubiksCube {
     private HashMap<Integer, Set<Integer>> sideMap = new HashMap<Integer, Set<Integer>>()
     {{
         // Color 0 indices
-        put(0, new HashSet<>()
+        put(0, new HashSet<Integer>()
         {{
             add(0);
             add(1);
@@ -31,7 +32,7 @@ public class RubiksCube {
         }});
 
         // Color 1 indices
-        put(1, new HashSet<>(){{
+        put(1, new HashSet<Integer>(){{
             add(4);
             add(5);
             add(6);
@@ -45,7 +46,7 @@ public class RubiksCube {
             add(20);
             add(23);
         }});
-        put(2, new HashSet<>(){{
+        put(2, new HashSet<Integer>(){{
             add(8);
             add(9);
             add(10);
@@ -248,11 +249,11 @@ public class RubiksCube {
         ArrayList<RubiksCube> cubeNeighbors = new ArrayList<RubiksCube>();
         char[] possibleTurns = {'u', 'U', 'r', 'R', 'f', 'F'};
         for(int i = 0; i<possibleTurns.length;i++){
-            RubiksCube RC = new RubiksCube(this);
-            RC.moves = new ArrayList<>(moves);
-            RC.cost = RC.findCost();
-
-            cubeNeighbors.add(RC.rotate(possibleTurns[i]));
+//            RubiksCube RC = new RubiksCube(this);
+//            RC.moves = new ArrayList<>(moves);
+//            RC.cost = RC.findCost();
+            cubeNeighbors.add(rotate(possibleTurns[i]));
+            //cubeNeighbors.add(RC.rotate(possibleTurns[i]));
         }
         return cubeNeighbors;
     }
@@ -276,76 +277,112 @@ public class RubiksCube {
         return h/4.0f;
     }
 
-    public static Comparator<RubiksCube> idComp = new Comparator<RubiksCube>(){
 
-        @Override
-        //Runtime: O(1)
-        public int compare(RubiksCube a, RubiksCube b) {
-            if (a.cost<b.cost){
-                return -1;
-            } else if (b.cost<a.cost){
-                return 1;
-            } else {
-                return 0;
-            }
-        }
-    };
+    //Runtime: O(1)
+    @Override
+    public int compareTo(RubiksCube a) {
 
-    //Heuristic Function
-    //Runtime: O() because of manhattan()
+        return Float.compare(cost, a.cost);
+//        if (a.cost<b.cost){
+//            return -1;
+//        } else if (b.cost<a.cost){
+//            return 1;
+//        } else {
+//            return 0;
+//        }
+    }
+//
+//    public static Comparator<RubiksCube> idComp = new Comparator<RubiksCube>(){
+//
+//        @Override
+//        //Runtime: O(1)
+//        public int compare(RubiksCube a, RubiksCube b) {
+//            if (a.cost<b.cost){
+//                return -1;
+//            } else if (b.cost<a.cost){
+//                return 1;
+//            } else {
+//                return 0;
+//            }
+//        }
+//
+//    };
+
+    //Runtime: O(N) because of manhattan() and numMisplaced()
     public float findCost(){
         int g = this.moves.size();
         float h2 = manhattan();
-        float f = g+h2;    //g+h1+h2;
+        //int h1 = this.cube.numMisplaced();
+        float f = g+h2; //g+h1+h2;
         return f;
     }
 
     // return the list of rotations needed to solve a rubik's cube
     public List<Character> solve() {
 
-        PriorityQueue<RubiksCube> open = new PriorityQueue<>(idComp);
-        ArrayList<RubiksCube> closed = new ArrayList<>();
+        PriorityQueue<RubiksCube> open = new PriorityQueue<>();
+        HashMap<RubiksCube, RubiksCube> closed = new HashMap<RubiksCube, RubiksCube>();
+        //ArrayList<RubiksCube> closed = new ArrayList<>();
 
         boolean ignore;
         moves = new ArrayList<>();
         cost = 0;
 
-        open.add(this);
+        //RubiksCube currentState = RubiksCube(this);
+
+        open.offer(this);
 
         while (!open.isEmpty()) {
             RubiksCube temp = open.poll();   //highest priority, lowest cost cube
 
-            for (RubiksCube neigh: temp.neighbors()) {
+            for (RubiksCube neigh : temp.neighbors()) {
 
                 if (neigh.isSolved()) {
                     System.out.println(neigh.moves);
                     return neigh.moves;
+                    //this.minMoves = addState.moves;
                 }
                 ignore = false;
 
                 for (RubiksCube currCube: open) {
                     if(currCube.equals(neigh)){
-                        if (currCube.cost < neigh.cost) {
+                        if (currCube.cost <= neigh.cost) {
+                            ignore = true;
+                            break;
+                            //currCube.cost = neigh.cost;
+                            //currCube.moves = new ArrayList<>(neigh.moves);
+                        }
+                        else{
+                            //open.remove(currCube);
                             ignore = true;
                             currCube.cost = neigh.cost;
                             currCube.moves = new ArrayList<>(neigh.moves);
+                            break;
                         }
                     }
                 }
-                for (RubiksCube visitedCube: closed){
-                    if(visitedCube.equals(neigh)) {
-                        if (visitedCube.cost < neigh.cost) {
-                            ignore = true;
-                            visitedCube.cost = neigh.cost;
-                            visitedCube.moves = new ArrayList<>(neigh.moves);
-                        }
+
+
+                if(closed.containsKey(neigh)) {
+                    RubiksCube visitedCube = closed.get(neigh);
+                    if (visitedCube.cost <= neigh.cost) {
+                        ignore = true;
+                        //visitedCube.cost = neigh.cost;
+                        //visitedCube.moves = new ArrayList<>(neigh.moves);
+                    }
+                    else{
+                        ignore = true;
+                        visitedCube.cost = neigh.cost;
+                        visitedCube.moves = new ArrayList<>(neigh.moves);
+                        //closed.put(visitedCube, visitedCube);
                     }
                 }
+
                 if(!ignore) {
-                    open.add(neigh);
+                    open.offer(neigh);
                 }
             }
-            closed.add(temp);
+            closed.put(temp, temp);
         }
         return new ArrayList<>();
     }
