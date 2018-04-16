@@ -16,8 +16,6 @@ public class RubiksCube implements Comparable<RubiksCube>{
     //private char lastmove;
     //private RubiksCube lastcube;
 
-
-
     // initialize a solved rubiks cube
     public RubiksCube() {
         // 24 colors to store, each takes 3 bits
@@ -209,10 +207,6 @@ public class RubiksCube implements Comparable<RubiksCube>{
         ArrayList<RubiksCube> cubeNeighbors = new ArrayList<RubiksCube>();
         char[] possibleTurns = {'u', 'U', 'r', 'R', 'f', 'F'};
         for(int i = 0; i<possibleTurns.length;i++){
-            /*RubiksCube RC = new RubiksCube(this);
-            RC.movenum = new ArrayList<>(moves);
-            RC.cost = RC.findCost();*/
-
             cubeNeighbors.add(rotate(possibleTurns[i]));
         }
         return cubeNeighbors;
@@ -236,7 +230,6 @@ public class RubiksCube implements Comparable<RubiksCube>{
         }
         return h/4.0f;
     }
-
     public float ColorManhattan(){
 
         int h = 0;
@@ -312,7 +305,6 @@ public class RubiksCube implements Comparable<RubiksCube>{
 
     // return the list of rotations needed to solve a rubik's cube
     public List<Character> solve() { //O(E log (V))
-
         PriorityQueue<RubiksCube> open = new PriorityQueue<RubiksCube>();
         HashMap<BitSet, Float> openMap = new HashMap<>();
         HashMap<BitSet, Float> closed = new HashMap<BitSet, Float>();
