@@ -262,7 +262,6 @@ public class RubiksCube {
 
         // Run for all colors
         int h = 0;
-        return h;
         for (int i = 0; i < 24; i++){
             int color = getColor(i);
             boolean reverse = false;
