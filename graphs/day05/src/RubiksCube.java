@@ -289,7 +289,6 @@ public class RubiksCube {
                 return 0;
             }
         }
-
     };
 
     //Heuristic Function
@@ -297,8 +296,7 @@ public class RubiksCube {
     public float findCost(){
         int g = this.moves.size();
         float h2 = manhattan();
-        //int h1 = this.cube.numMisplaced();
-        float f = g+h2; //g+h1+h2;
+        float f = g+h2;    //g+h1+h2;
         return f;
     }
 
@@ -312,19 +310,16 @@ public class RubiksCube {
         moves = new ArrayList<>();
         cost = 0;
 
-        //RubiksCube currentState = RubiksCube(this);
-
         open.add(this);
 
         while (!open.isEmpty()) {
             RubiksCube temp = open.poll();   //highest priority, lowest cost cube
 
-            for (RubiksCube neigh : temp.neighbors()) {
+            for (RubiksCube neigh: temp.neighbors()) {
 
                 if (neigh.isSolved()) {
                     System.out.println(neigh.moves);
                     return neigh.moves;
-                    //this.minMoves = addState.moves;
                 }
                 ignore = false;
 
@@ -337,7 +332,6 @@ public class RubiksCube {
                         }
                     }
                 }
-
                 for (RubiksCube visitedCube: closed){
                     if(visitedCube.equals(neigh)) {
                         if (visitedCube.cost < neigh.cost) {
