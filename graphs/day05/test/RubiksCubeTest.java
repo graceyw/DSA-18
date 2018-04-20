@@ -1,6 +1,7 @@
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -101,12 +102,14 @@ public class RubiksCubeTest {
     public void testCyclicRotations() {
         // performing this sequence of moves 6 times has no impact on the state of the cube
         RubiksCube r = new RubiksCube();
-        for (int i = 0; i < 6; i++) {
-            assertEquals(r.isSolved(), i == 0);
+        for (int i = 0; i < 6*1000; i++) {
+            assertEquals(r.isSolved(), i %6 ==  0);
+            //r.moves = new ArrayList<>(Arrays.asList('r','u','R','U'));
             r = r.rotate('r');
             r = r.rotate('u');
             r = r.rotate('R');
             r = r.rotate('U');
+            //r.moves = new ArrayList<>();
         }
         assertTrue(r.isSolved());
     }
@@ -159,6 +162,11 @@ public class RubiksCubeTest {
 
     @Test
     public void testSolve10() {
+        //[F, r, f, U, F, u, F, u]
+        //[R, u, r, r, U, R, f, r, U, f]
+        //[f, f, U, f, U, r]
+        //[r, r, u, r, F, F, u, F]
+        //[f, f, r, r, U, f]
         RubiksCube[] brokenCubes = new RubiksCube[]{
                 new RubiksCube().rotate(Arrays.asList('f', 'F', 'U', 'f', 'U', 'f', 'u', 'F', 'R', 'f')),
                 new RubiksCube().rotate(Arrays.asList('F', 'u', 'R', 'F', 'r', 'u', 'R', 'R', 'U', 'r')),
@@ -172,6 +180,7 @@ public class RubiksCubeTest {
         for (int i = 0; i < 5; i++) {
             RubiksCube copy = new RubiksCube(brokenCubes[i]);
             List<Character> solution = brokenCubes[i].solve();
+            System.out.println("Got Here!");
             assertEquals(correctLengths[i], solution.size());
             assertTrue(copy.rotate(solution).isSolved());
         }
