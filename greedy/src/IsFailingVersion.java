@@ -1,7 +1,7 @@
 public interface IsFailingVersion {
     boolean isFailingVersion(long n);
 
-    public static boolean isFailingVersion() {
-
-    }
+//    public static boolean isFailingVersion() {
+//
+//    }
 }

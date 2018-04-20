@@ -15,8 +15,18 @@
       <file leaf-file-name="IsFailingVersion.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IsFailingVersion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="54">
+              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="2" selection-end-line="5" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BarnRepairTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/BarnRepairTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="290">
+              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -25,11 +35,10 @@
       <file leaf-file-name="BarnRepair.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/BarnRepair.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="378">
+              <caret line="21" column="36" lean-forward="true" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#332#361#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -45,9 +54,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/test/BarnRepairTest.java" />
         <option value="$PROJECT_DIR$/src/IsFailingVersion.java" />
         <option value="$PROJECT_DIR$/src/BarnRepair.java" />
+        <option value="$PROJECT_DIR$/test/BarnRepairTest.java" />
       </list>
     </option>
   </component>
@@ -217,22 +226,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_in_greedy - 2018.04.17 at 15h 58m 24s.xml">
+    <history-entry file="All_in_greedy - 2018.04.19 at 23h 01m 07s.xml">
       <configuration name="All in greedy" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_greedy - 2018.04.17 at 15h 58m 54s.xml">
+    <history-entry file="All_in_greedy - 2018.04.19 at 23h 03m 21s.xml">
       <configuration name="All in greedy" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_greedy - 2018.04.19 at 21h 39m 43s.xml">
+    <history-entry file="All_in_greedy - 2018.04.19 at 23h 05m 34s.xml">
       <configuration name="All in greedy" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_greedy - 2018.04.19 at 21h 42m 16s.xml">
+    <history-entry file="All_in_greedy - 2018.04.19 at 23h 10m 23s.xml">
       <configuration name="All in greedy" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_greedy - 2018.04.19 at 22h 12m 41s.xml">
+    <history-entry file="All_in_greedy - 2018.04.19 at 23h 11m 35s.xml">
       <configuration name="All in greedy" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_greedy - 2018.04.19 at 22h 13m 25s.xml">
+    <history-entry file="All_in_greedy - 2018.04.19 at 23h 14m 36s.xml">
+      <configuration name="All in greedy" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_greedy - 2018.04.19 at 23h 15m 47s.xml">
+      <configuration name="All in greedy" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_greedy - 2018.04.19 at 23h 19m 18s.xml">
+      <configuration name="All in greedy" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_greedy - 2018.04.19 at 23h 20m 20s.xml">
+      <configuration name="All in greedy" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_greedy - 2018.04.19 at 23h 21m 06s.xml">
       <configuration name="All in greedy" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -248,7 +269,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3183246" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40732986" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -325,16 +346,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/BarnRepairTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="708">
-          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/MCCCTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -347,19 +358,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/IsFailingVersion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="54">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="2" selection-end-line="5" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/BarnRepairTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BarnRepair.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="378">
+          <caret line="21" column="36" lean-forward="true" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#332#361#0" expanded="true" />
           </folding>
         </state>
       </provider>

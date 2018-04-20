@@ -1,34 +1,27 @@
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class BarnRepair {
     public static int solve(int M, int[] occupied) {
         if (M == 1) return M;
+        Arrays.sort(occupied);
         int blockedStalls = occupied.length;        //minimum number of stalls blocked
-        Map<ArrayList<Integer>, Integer> gaps = new HashMap<ArrayList<Integer>, Integer>();     //ACTUALLYYYYYYYY may not be necessary to track location of gap, just size, because you're only returning number of blocked stalls
+        ArrayList<Integer> gaps = new ArrayList<>();
 
-        for (int stallIndex = 1; stallIndex <= occupied.length; stallIndex++) {   //beware may cause an off by 1 error
-
-            if (occupied[stallIndex] + 1 != occupied[stallIndex+1]) {   //if the stall next to an occupied stall isn't occupied
-
-                ArrayList<Integer> gapLocation = new ArrayList<>();
-                gapLocation.add(occupied[stallIndex]);
-                gapLocation.add(occupied[stallIndex+1]);      //might be able to add these things in the initialization line?
-
-                int gapSize = occupied[stallIndex+1] - occupied[stallIndex];
-
-                gaps.put(gapLocation, gapSize);   //add the gap to the map
+        for (int stallIndex = 0; stallIndex < occupied.length-1; stallIndex++) {
+            if (occupied[stallIndex] + 1 != occupied[stallIndex+1]) {                //if the stall next to an occupied stall isn't occupied
+                gaps.add(occupied[stallIndex+1] - occupied[stallIndex]);             //add the # of stalls in the gap to the gaps arraylist
             }
         }
-//        System.out.println(gaps);     //test print function
-
-        for (gap : gaps) {
-            while (M != 0) {
-                //add smallest gaps to blockedStalls / cover smallest gaps without using another board
-                M--;
-            }
+        Collections.sort(gaps);
+        System.out.println(gaps);     //test print function
+        int overBudget = gaps.size() + 1 - M; //number of boards over budget M
+        while (overBudget > 0) {
+            blockedStalls += gaps.get(overBudget);                        //add gap to blockedStalls
+            overBudget--;                                                 //cause you didn't use an extra board
         }
+        System.out.println(blockedStalls);
         return blockedStalls;
     }
 }

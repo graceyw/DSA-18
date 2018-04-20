@@ -38,7 +38,9 @@ public class BarnRepairTest {
                 occupied[i] = Integer.parseInt(f.readLine());
 
             solution = BarnRepair.solve(M, occupied);
-            System.out.print("Test case " + t);
+//            System.out.print("Test case " + t);
+
+            System.out.println(solution);
 
             if (solution != answers[t]) {
                 System.out.println(" fails");
