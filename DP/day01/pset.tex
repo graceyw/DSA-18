@@ -1,0 +1,157 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{\large{\textsc{Dynamic Programming 01}}}
+\date{}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage[a4paper, portrait, margin=0.8in]{geometry}
+
+\usepackage{listings}
+
+\newcommand\perm[2][n]{\prescript{#1\mkern-2.5mu}{}P_{#2}}
+\newcommand\comb[2][n]{\prescript{#1\mkern-0.5mu}{}C_{#2}}
+\newcommand*{\field}[1]{\mathbb{#1}}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\newcommand{\Mod}[1]{\ (\text{mod}\ #1)}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{}
+
+
+For the problems below, identify the subproblem, recurrence relation, and time complexity using dynamic programming. If you finish, both problems are on your homework, so you can begin coding them up.
+
+%%%%% PROBLEMS %%%%
+
+\begin{enumerate}
+
+%%%%% PROBLEM 1 %%%%%
+\item There are many cases in which it can be helpful to determine how different one string is from another.  Spellcheck programs use this concept to determine the most likely word attempted, biologists use it to determine how well one strand of DNA matches another, and machine translation programs use it to predict the accuracy of a generated sentence. 
+
+Given two strings $a$ and $b$, return the minimum number of operations required to convert string $a$ to string $b$. You can apply three different operations to the first string:
+
+\begin{itemize}
+    \item Insert a new character
+    \item Delete and existing character
+    \item Replace one character with another
+\end{itemize}
+
+For example: 
+
+\begin{lstlisting}
+a = "sunday"
+b = "saturday"
+
+editDistance = 3
+
+Steps: replace n with r, insert t, insert a 
+\end{lstlisting}
+
+%%%%% PROBLEM 2 %%%%%
+\item Monsters have captured Professor Nick, `N`, and imprisoned him in the bottom-right corner of the Academic Center.  The monsters also went ahead with the old remodelling plan, so the AC now consists of M x N rooms laid out in a 2D grid.  The rest of our valiant teaching team, `T`, will need to fight through the rooms of monsters in order to save Nick.  
+
+The teaching team has a health level indicated by the integer `h`.  If h drops to `0` or below at any point, everyone died, and Nick is stuck with the monsters.
+
+Each room has either a monster or a health power up (e.g. coffee, monster fighting weapons, etc.) and will increase or decrease the health of the teaching team by the integer amount given for that room.
+
+Given the 2D array of integers representing the health values of each room in the AC, assuming the teaching team starts in the top-left corner and Nick in the bottom-right corner, and assuming that the teaching team only moves right or down, return the **minimum initial health** required to save Professor Nick.  We need to know how much coffee to drink before attempting the rescue.
+
+
+Example:
+
+\begin{lstlisting}
+-------------------------
+| -2 (T) |  -3	|   3   |
+-------------------------
+|   -5   | -10  |   1   |
+-------------------------
+|   10   |  30  | -5 (S)|
+-------------------------
+
+map = {{-2, -3, 3}, {-5, -10, 1}, {10, 30, -5}}
+
+minInitialHealth = 7, following the optimal path R -> R -> D -> D
+\end{lstlisting}
+
+
+%%%%% PROBLEM 3 %%%%%
+\item Jingyi has a stack of coins and would like to split them up as evenly as possible with David. She is given a set of $N$ coins. Each of these coins has a given value. She must place each of these coins in one of two piles. Output the smallest possible difference between the total values of these two piles.
+
+You are given
+
+coins, an array of all the coins Jingyi must split
+You will be filling out the function public int splitCoins(int[] coins) in $Coins.java$ and run tests in $CoinsTest.java$
+
+For example, if she had the coins \{3,1,1,2,5,7\}, she can try to split them up into \{3,5\} and \{1,1,2,7\} and the difference between these two piles would be 3. The more optimal splitting is \{3, 2, 5\} and \{1, 1, 7\}, for a difference of 1.
+
+\end{enumerate}
+
+\newpage
+
+\begin{center}
+Solutions
+\end{center}
+
+%%%%% SOLUTIONS %%%%%
+\begin{enumerate}
+
+%%%%% Solution 1 %%%%%
+\item
+\begin{lstlisting}
+
+Subproblem: String suffixes, cut off front letters (could also do back, but the 
+            suffixes concept provides a comparison to the text justification example 
+            from lecture)
+
+Recurrence Relation: dp[i][j] = 1 + min(dp[i][j-1], dp[i-1][j], dp[i-1][j-1]); 
+                        min gets min DP of insert, remove, or replace
+                                       
+Runtime: O(MN), where m and n are the lengths of a and b
+
+\end{lstlisting}
+
+%%%%% Solution 2 %%%%%
+\item
+\begin{lstlisting}
+
+Subproblem: min hp needed at position working back from target
+
+Recurrence Relation: int down = Math.max(health[i + 1][j] - map[i][j], 1);
+                     int right = Math.max(health[i][j + 1] - map[i][j], 1);
+                     health[i][j] = Math.min(right, down);
+
+Runtime: O(MN) where m and n are the dimensions of the dungeon
+
+\end{lstlisting}
+
+%%%%% Solution 3 %%%%%
+\item
+\begin{lstlisting}
+
+Subproblem: Subproblem is DP\[i, j\], where i is the number of coins already placed 
+and j is the amount in the left pile
+
+Guess: Do you put the coin in the left pile or not?
+
+Recurrence Relation: DP\[i, j\] = whichever of (DP\[i+1, j\], 
+                                                DP\[i+1, j+coins\[i\]\])
+                                is closer to sum(coins)/2
+
+Runtime: O(ns) where n the number of coins and s is the sum of the coins
+
+\end{lstlisting}
+
+\end{enumerate}
+
+\end{document}
+
