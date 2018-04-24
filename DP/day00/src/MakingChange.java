@@ -1,4 +1,3 @@
-
 public class MakingChange {
 
     private static int coinsNeededRecurs(int i, int[] denominations, int[] DP) {
@@ -19,7 +18,7 @@ public class MakingChange {
     public static int minCoinsNeeded(int N, int[] coinDenominations) {
         int[] DP = new int[N + 1];
         for (int i = 0; i < DP.length; i++) {
-            DP[i] = -1; // set a special empty value
+            DP[i] = -1;        //set a special empty value
         }
         return coinsNeededRecurs(N, coinDenominations, DP);
     }
