@@ -19,22 +19,19 @@ public class EditDistance {
 
     private static int recurse(String a, String b, int[][] DP) {
 
-        if () {         // base cases
-
-        }
+        if (a == b) return 0;    // base case
 
         if (DP[a.length()][b.length()] != -1) return DP[a.length()][b.length()];     // check if already memoized; if so return that
 
+        int min = 0;
         for (int i=1; i<a.length(); i++) {          // Recurrence Relation  //check for off by 1 error, might be better to start at 0 and check that not 0
             for (int j = 1; j<b.length(); j++) {
-                int tempMin = Math.min(recurse(a.substring(0,i), b.substring(0,j-1),DP), recurse(a.substring(0,i-1), b.substring(0,j), DP));    //min(whole string, one less). Necessary to do 2 bc Math.min only takes 2 inputs
-                DP[i][j] = 1 + Math.min(tempMin, recurse(a.substring(0,i), b.substring(0,j), DP));     //substring has exclusive ending index so check for off by 1 error
+                int tempMin = Math.min(recurse(a.substring(0, i), b.substring(0, j - 1), DP), recurse(a.substring(0, i - 1), b.substring(0, j), DP));    //min(whole string, one less). Necessary to do 2 bc Math.min only takes 2 inputs
+                DP[i][j] = 1 + Math.min(tempMin, recurse(a.substring(0, i), b.substring(0, j), DP));    //Update Memo    //substring has exclusive ending index so check for off by 1 error
+
+                if (DP[i][j] < min) min = DP[i][j];     //update min
             }
         }
-
-        // Update memo
-        DP[a.length()][b.length()] = ;
-
-        return 0;
+        return min;
     }
 }
