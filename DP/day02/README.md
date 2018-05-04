@@ -119,7 +119,7 @@ Return 115
 
 <details>
   <summary>Hint 3</summary>
-  If `k` is the index of your choice for the last balloon top pop, `i<=k<=j`, you obtain value `B[i-1] * D[k] * B[j + 1]`. This is because `B[k]` is the last balloon in the subarray we pop, so all balloons on its left and right in the bounds `[i, j]` are gone, so the values you multiply by are at `i-1` and `j+1`
+  If `k` is the index of your choice for the last balloon to pop, `i<=k<=j`, you obtain value `B[i-1] * B[k] * B[j + 1]`. This is because `B[k]` is the last balloon in the subarray we pop, so all balloons on its left and right in the bounds `[i, j]` are gone, so the values you multiply by are at `i-1` and `j+1`
 </details>
 
 <details>
