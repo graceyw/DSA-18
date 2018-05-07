@@ -30,6 +30,9 @@ public class TextJustification {
     Subproblem: w[i:]
     Guess: Where to start 2nd line with minimum total cost (j, where i+1 <= j < w.size()+1
     Recurrence Relation: DP[i] = min((DP[j] + cost(line from i to j)) for j in range(i+1,w.length+1)) <- basically python syntax, given in MIT video lecture in README
+
+    Runtime: w^2 (double for-loop)
+    Space Complexity: w (size of DP)
     */
     public static List<Integer> justifyText(String[] w, int m) {
         //Initialize memo
